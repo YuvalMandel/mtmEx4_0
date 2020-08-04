@@ -133,6 +133,29 @@ Graph operator*(const Graph& g1, const Graph& g2){
 
 }
 
+Graph operator!(const Graph& g){
+
+    Graph new_g;
+
+    new_g.vertexes = g.vertexes;
+
+    for(const Vertex& v1 : new_g.vertexes){
+        for(const Vertex& v2 : new_g.vertexes){
+            if(v1 != v2) {
+                Edge new_e(v1, v2);
+                new_g.edges.insert(new_e);
+            }
+        }
+    }
+
+    for(const Edge& e : g.edges){
+        new_g.edges.erase(e);
+    }
+
+    return new_g;
+
+}
+
 ostream& operator<<(ostream &os, const Graph &g){
 
     for(const Vertex& v : g.vertexes){
@@ -171,10 +194,10 @@ int main(){
     g1.addEdge(e12);
     g2.addEdge(e34);
     Graph g3 = g1 + g2;
-    Graph g4 = g1 * g2;
+    Graph g4 = !g1;
     std::cout << g1 << endl;
-    std::cout << g2 << endl;
-    std::cout << g3 << endl;
+//    std::cout << g2 << endl;
+//    std::cout << g3 << endl;
     std::cout << g4 << endl;
 
     return 0;

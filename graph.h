@@ -37,7 +37,7 @@ public:
     friend Graph operator-(const Graph& g1, const Graph& g2);
     friend Graph operator^(const Graph& g1, const Graph& g2);
     friend Graph operator*(const Graph& g1, const Graph& g2);
-//    Graph operator!(Graph g);
+    friend Graph operator!(const Graph& g);
     friend std::ostream& operator<<(std::ostream &os, const Graph &g);
 
 };
