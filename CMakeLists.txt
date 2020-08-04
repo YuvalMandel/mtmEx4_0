@@ -21,4 +21,6 @@ include_directories(.)
 
 add_executable(ex4
         graph.cpp
-        graph.h)
+        graph.h
+        gcalc.cpp
+        gcalc.h)

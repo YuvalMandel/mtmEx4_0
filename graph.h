@@ -3,8 +3,6 @@
 
 #include <iostream>
 #include <set>
-#include <vector>
-#include <string>
 
 #define Vertex std::string
 #define Edge std::pair<Vertex, Vertex>

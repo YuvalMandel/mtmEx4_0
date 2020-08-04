@@ -1,19 +1,21 @@
 #ifndef MTMEX4_0_GCALC_H
 #define MTMEX4_0_GCALC_H
 
+#include <iostream>
 #include <map>
 #include "graph.h"
-using namespace std;
 
-class GCalc {
+class Gcalc {
 
 private:
-    map<string, Graph> graphs;
+    std::map<std::string, Graph> graphs;
 
 public:
-    friend osstream print(string graphName);
-    void delete(string graphName);
-    osstream who();
+
+    void remove(const std::string& graph_name);
+    void reset();
+    Graph getGraph(const std::string& graph_name);
+    friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
 };
 

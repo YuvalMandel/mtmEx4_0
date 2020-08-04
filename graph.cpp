@@ -3,11 +3,10 @@
 #include <set>
 //using namespace Graph;
 using std::endl;
-using std::set_union;
+//using std::set_union;
 
 using std::ostream;
 using std::set;
-using std::vector;
 using std::string;
 using std::pair;
 
@@ -176,30 +175,30 @@ ostream& operator<<(ostream &os, const Graph &g){
 
 }
 
-int main(){
-
-    Graph g1;
-    Graph g2;
-    Vertex v1 = "v1";
-    Vertex v2 = "v2";
-    Vertex v3 = "v3";
-    Vertex v4 = "v4";
-    Edge e12(v1,v2);
-    Edge e34(v3,v4);
-    g1.addVertex(v1);
-    g1.addVertex(v2);
-    g1.addVertex(v3);
-    g2.addVertex(v3);
-    g2.addVertex(v4);
-    g1.addEdge(e12);
-    g2.addEdge(e34);
-    Graph g3 = g1 + g2;
-    Graph g4 = !g1;
-    std::cout << g1 << endl;
-//    std::cout << g2 << endl;
-//    std::cout << g3 << endl;
-    std::cout << g4 << endl;
-
-    return 0;
-
-}
+//int main(){
+//
+//    Graph g1;
+//    Graph g2;
+//    Vertex v1 = "v1";
+//    Vertex v2 = "v2";
+//    Vertex v3 = "v3";
+//    Vertex v4 = "v4";
+//    Edge e12(v1,v2);
+//    Edge e34(v3,v4);
+//    g1.addVertex(v1);
+//    g1.addVertex(v2);
+//    g1.addVertex(v3);
+//    g2.addVertex(v3);
+//    g2.addVertex(v4);
+//    g1.addEdge(e12);
+//    g2.addEdge(e34);
+//    Graph g3 = g1 + g2;
+//    Graph g4 = !g1;
+//    std::cout << g1 << endl;
+////    std::cout << g2 << endl;
+////    std::cout << g3 << endl;
+//    std::cout << g4 << endl;
+//
+//    return 0;
+//
+//}
