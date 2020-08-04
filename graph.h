@@ -6,17 +6,20 @@
 #include <vector>
 #include <string>
 
-class Vertex: public std::string{
+#define Vertex std::string
+#define Edge std::pair<Vertex, Vertex>
 
-    using std::string::string;
-
-};
-class Edge: public std::pair<Vertex, Vertex>{
-
-    using pair::pair;
-    friend std::ostream& operator<<(std::ostream &os, const Edge &e);
-
-};
+//class Vertex: public std::string{
+//
+//    using std::string::string;
+//
+//};
+//class Edge: public std::pair<Vertex, Vertex>{
+//
+//    using pair::pair;
+//    friend std::ostream& operator<<(std::ostream &os, const Edge &e);
+//
+//};
 
 class Graph {
 private:
@@ -33,7 +36,7 @@ public:
     friend Graph operator+(const Graph& g1, const Graph& g2);
     friend Graph operator-(const Graph& g1, const Graph& g2);
     friend Graph operator^(const Graph& g1, const Graph& g2);
-//    friend Graph operator*(const Graph& g1, const Graph& g2);
+    friend Graph operator*(const Graph& g1, const Graph& g2);
 //    Graph operator!(Graph g);
     friend std::ostream& operator<<(std::ostream &os, const Graph &g);
 
