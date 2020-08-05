@@ -35,7 +35,7 @@ std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc){
     }
 
     for(auto it = gcalc.graphs.begin(); it != gcalc.graphs.end(); ++it) {
-        os << (it -> second) << endl;
+        os << (it -> first) << endl;
     }
 
     return os;
@@ -195,12 +195,6 @@ Graph Gcalc::calcTwoExpressions(const std::string& leftSide,
 
 }
 
-//Graph Gcalc::calcStringComplementGraph(const std::string& exp){
-//
-//    return !(this->returnGraphFromExpression(exp));
-//
-//}
-
 Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     Graph g;
@@ -292,6 +286,20 @@ void Gcalc::addGraph(const std::string& graph_name,const Graph& graph){
 
 }
 
+string Gcalc::returnGraphName(const string& graphName){
+
+    string shaved_name = this -> removeSpacesFromSides(graphName);
+
+    if(shaved_name[0] == '(' && shaved_name.back() == ')'){
+        shaved_name.erase(0,1);
+        shaved_name.pop_back();
+        return this -> returnGraphName(shaved_name);
+    }
+
+    return shaved_name;
+
+}
+
 int Gcalc::handleCommand(const string& command){
 
     // First, we will remove any spaces from the sides.
@@ -319,6 +327,16 @@ int Gcalc::handleCommand(const string& command){
                 5, shaved_command.length() - 5);
 
         std::cout << this -> returnGraphFromExpression(expression_to_calc);
+
+        return 0;
+
+    } else if(checkSpecialCommand(shaved_command, "delete")){
+
+        expression_to_calc = shaved_command.substr(
+                6, shaved_command.length() - 6);
+        expression_to_calc = this ->returnGraphName(expression_to_calc);
+
+        this -> graphs.erase(expression_to_calc);
 
         return 0;
 

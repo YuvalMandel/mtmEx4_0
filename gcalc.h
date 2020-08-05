@@ -29,7 +29,7 @@ public:
     Graph calcTwoExpressions(const std::string& leftSide,
                              const std::string& rightSide,
                              const char& symbol);
-//    Graph calcStringComplementGraph(const std::string& exp);
+    std::string returnGraphName(const std::string& graphName);
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
     class BadEdge: public std::exception{};
