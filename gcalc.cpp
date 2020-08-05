@@ -126,35 +126,48 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
 
     }
 
+    current = this -> removeSpacesFromSides(current);
+
+    if(!current.empty()){
+        g.addVertex(current);
+        current = "";
+    }
+
     if(exp[i] == '|'){
-
-        current = this -> removeSpacesFromSides(current);
-
-        if(!current.empty()){
-            g.addVertex(current);
-            current = "";
-        }
 
         i++;
 
+        bool expecting_comma = false;
+
         while(exp[i] != '}'){
 
-//            current = this -> removeSpacesFromSides(current);
-            current += exp[i];
+            if(!expecting_comma) {
 
-            if(exp[i] == '>'){
+                current += exp[i];
 
-                current = this -> removeSpacesFromSides(current);
+                if (exp[i] == ' ') { ;
+                } else if (exp[i] == '>') {
 
-                if(!current.empty()){
-                    Edge e = this -> creatEdgeFromString(current);
-                    g.addEdge(e);
-                    current = "";
+                    current = this->removeSpacesFromSides(current);
+
+                    if (!current.empty()) {
+                        Edge e = this->creatEdgeFromString(current);
+                        g.addEdge(e);
+                        current = "";
+                    }
+
+                    expecting_comma = true;
+                }
+            }else{
+                if(exp[i] == ' '){
+                    ;
+                }else if(exp[i] == ','){
+                    expecting_comma = false;
+                }else{
+                    throw BadEdge();
                 }
             }
-
             ++i;
-
         }
     }
 
@@ -264,7 +277,7 @@ bool Gcalc::checkValidGraphName(const string& command){
 
 void Gcalc::addGraph(const std::string& graph_name,const Graph& graph){
 
-    this -> graphs.insert(std::pair<string,Graph>(graph_name,graph));
+    this -> graphs[graph_name] = graph;
 
 }
 
@@ -318,7 +331,7 @@ int Gcalc::handleCommand(const string& command){
                 shaved_command.substr(0, equalsSignLocation));
 
         if(!(this -> checkValidGraphName(graph_name))){
-            std::cout << "Error: Illegal command" << endl;
+            std::cout << "Error: Invalid Graph name" << endl;
             return 0;
         }
 
