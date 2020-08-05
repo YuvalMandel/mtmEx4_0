@@ -195,6 +195,12 @@ Graph Gcalc::calcTwoExpressions(const std::string& leftSide,
 
 }
 
+//Graph Gcalc::calcStringComplementGraph(const std::string& exp){
+//
+//    return !(this->returnGraphFromExpression(exp));
+//
+//}
+
 Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     Graph g;
@@ -223,6 +229,11 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
         --i;
 
+    }
+
+    if(shaved_exp[0] == '!'){
+        g = !this -> returnGraphFromExpression(shaved_exp.erase(0, 1));
+        return g;
     }
 
     if(shaved_exp[0] == '{' && shaved_exp.back() == '}'){
