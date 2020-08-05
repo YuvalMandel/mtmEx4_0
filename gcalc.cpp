@@ -217,7 +217,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    auto it = this -> graphs.find(exp);
+    std::map<string,Graph>::iterator it = this -> graphs.find(exp);
     if (it != this -> graphs.end()){
         return it -> second;
     }
