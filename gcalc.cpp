@@ -188,7 +188,14 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     string shaved_exp = this -> removeSpacesFromSides(exp);
 
-    int i = exp.length() - 1;
+    if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
+        shaved_exp.erase(0,1);
+        shaved_exp.pop_back();
+        g = this -> returnGraphFromExpression(shaved_exp);
+        return g;
+    }
+
+    int i = shaved_exp.length() - 1;
 
     while(i >= 0){
 
@@ -205,19 +212,12 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     }
 
-    if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
-        shaved_exp.erase(0,1);
-        shaved_exp.pop_back();
-        g = this -> returnGraphFromExpression(shaved_exp);
-        return g;
-    }
-
     if(shaved_exp[0] == '{' && shaved_exp.back() == '}'){
         g = this -> creatGraphFromString(shaved_exp);
         return g;
     }
 
-    std::map<string,Graph>::iterator it = this -> graphs.find(exp);
+    std::map<string,Graph>::iterator it = this -> graphs.find(shaved_exp);
     if (it != this -> graphs.end()){
         return it -> second;
     }
