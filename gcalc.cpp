@@ -210,9 +210,19 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     int i = shaved_exp.length() - 1;
 
+    int brackets_count = 0;
+
     while(i >= 0){
 
-        if(exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '^'){
+        if(exp[i] == ')'){
+            brackets_count--;
+        }
+        if(exp[i] == '('){
+            brackets_count++;
+        }
+
+        if((brackets_count == 0) &&
+        (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '^')){
 
             string leftSide = exp.substr(0, i);
             string rightSide = exp.substr(i + 1, exp.length() - i - 1);
@@ -240,7 +250,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return it -> second;
     }
 
-    return g;
+    throw noGraph();
 
 }
 
@@ -326,7 +336,16 @@ int Gcalc::handleCommand(const string& command){
         expression_to_calc = shaved_command.substr(
                 5, shaved_command.length() - 5);
 
-        std::cout << this -> returnGraphFromExpression(expression_to_calc);
+        Graph g;
+
+        try{
+            g = this -> returnGraphFromExpression(expression_to_calc);
+        }catch(noGraph& e){
+            std::cout << "Error: No Graph Exists with this name" << endl;
+            return 0;
+        }
+
+        std::cout << g;
 
         return 0;
 
@@ -373,8 +392,8 @@ int Gcalc::handleCommand(const string& command){
 
         try {
             graph = this -> returnGraphFromExpression(graph_expression);
-        } catch(exception& e){
-            std::cout << "Error: " << e.what() << endl;
+        } catch(noGraph& e){
+            std::cout << "Error: No Graph Exists with this name" << endl;
             return 0;
         }
 

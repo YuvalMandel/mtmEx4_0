@@ -33,6 +33,7 @@ public:
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
     class BadEdge: public std::exception{};
+    class noGraph: public std::exception{};
 
 };
 
