@@ -162,11 +162,48 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
 
 }
 
+Graph Gcalc::calcTwoExpressions(const std::string& leftSide,
+                         const std::string& rightSide, const char& symbol){
+
+    Graph leftGraph = this -> returnGraphFromExpression(leftSide);
+    Graph rightGraph = this -> returnGraphFromExpression(rightSide);
+
+    if(symbol == '+'){
+        return leftGraph + rightGraph;
+    }
+
+    switch (symbol) {
+        case '+' : return leftGraph + rightGraph;
+        case '-' : return leftGraph - rightGraph;
+        case '*' : return leftGraph * rightGraph;
+        case '^' : return leftGraph ^ rightGraph;
+        default: return leftGraph + rightGraph;
+    }
+
+}
+
 Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     Graph g;
 
     string shaved_exp = this -> removeSpacesFromSides(exp);
+
+    int i = exp.length() - 1;
+
+    while(i >= 0){
+
+        if(exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '^'){
+
+            string leftSide = exp.substr(0, i);
+            string rightSide = exp.substr(i + 1, exp.length() - i - 1);
+
+            return this -> calcTwoExpressions(leftSide, rightSide, exp[i]);
+
+        }
+
+        --i;
+
+    }
 
     if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
         shaved_exp.erase(0,1);
@@ -178,6 +215,11 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
     if(shaved_exp[0] == '{' && shaved_exp.back() == '}'){
         g = this -> creatGraphFromString(shaved_exp);
         return g;
+    }
+
+    auto it = this -> graphs.find(exp);
+    if (it != this -> graphs.end()){
+        return it -> second;
     }
 
     return g;
