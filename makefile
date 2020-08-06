@@ -12,7 +12,7 @@ $(EXEC) :$(OBJS)
 MtmParkingLot.o: gcalc.cpp gcalc.h graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
-graph.o: graph.h
+graph.o: graph.cpp graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 clean:
