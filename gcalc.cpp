@@ -46,7 +46,7 @@ string Gcalc::removeSpacesFromSides(const std::string& command){
         current_string.erase(0, 1);
     }
 
-    while(current_string.back() == ' '){
+    while(current_string[current_string.length() - 1] == ' '){
         current_string.pop_back();
     }
 
@@ -77,7 +77,8 @@ token){
                 command.substr(
                         token.length(),command.length() - token.length()));
 
-        if(sub_command[0] == '(' && sub_command.back() == ')'){
+        if(sub_command[0] == '(' &&
+            sub_command[sub_command.length() - 1] == ')'){
 
             return true;
 
@@ -103,7 +104,7 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
     if (!(bad_location==std::string::npos))
         throw BadEdge();
 
-    if(str[0] == '<' && str.back() == '>'){
+    if(str[0] == '<' && str[str.length() - 1] == '>'){
 
         string leftSide = str.substr(1,location-1);
         string rightSide = str.substr(location+1,str.length()-location-2);
@@ -221,7 +222,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     string shaved_exp = this -> removeSpacesFromSides(exp);
 
-    if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
+    if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
         shaved_exp.erase(0,1);
         shaved_exp.pop_back();
         g = this -> returnGraphFromExpression(shaved_exp);
@@ -260,7 +261,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    if(shaved_exp[0] == '{' && shaved_exp.back() == '}'){
+    if(shaved_exp[0] == '{' && shaved_exp[shaved_exp.length() - 1] == '}'){
         g = this -> creatGraphFromString(shaved_exp);
         return g;
     }
@@ -332,7 +333,7 @@ string Gcalc::returnGraphName(const string& graphName){
 
     string shaved_name = this -> removeSpacesFromSides(graphName);
 
-    if(shaved_name[0] == '(' && shaved_name.back() == ')'){
+    if(shaved_name[0] == '(' && shaved_name[shaved_name.size() - 1] == ')'){
         shaved_name.erase(0,1);
         shaved_name.pop_back();
         return this -> returnGraphName(shaved_name);
@@ -345,7 +346,7 @@ string Gcalc::returnGraphName(const string& graphName){
 void Gcalc::save(const std::string& command){
 
     string shaved_command = this -> removeSpacesFromSides(command);
-    if(shaved_command[0] == '(' && shaved_command.back() == ')'){
+    if(shaved_command[0] == '(' && shaved_command[shaved_command.length() - 1] == ')'){
         shaved_command.erase(0,1);
         shaved_command.pop_back();
     }
@@ -376,7 +377,7 @@ void Gcalc::save(const std::string& command){
 Graph Gcalc::load(const std::string& exp){
 
     string shaved_exp = this -> removeSpacesFromSides(exp);
-    if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
+    if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
         shaved_exp.erase(0,1);
         shaved_exp.pop_back();
         shaved_exp = this -> removeSpacesFromSides(shaved_exp);
