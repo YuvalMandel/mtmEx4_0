@@ -261,7 +261,10 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
+    std::cout << "shaved_exp before brackets: " << shaved_exp << endl;
+
     if(shaved_exp[0] == '{' && shaved_exp[shaved_exp.length() - 1] == '}'){
+        std::cout << "got in side {} if"  << endl;
         g = this -> creatGraphFromString(shaved_exp);
         return g;
     }
