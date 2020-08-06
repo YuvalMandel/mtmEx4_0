@@ -10,7 +10,7 @@ using std::pair;
 
 bool Graph::checkVertexPossible(const Vertex& vertexName){
 
-    for (int i = 0; i < vertexName.length(); ++i) {
+    for (unsigned int i = 0; i < vertexName.length(); ++i) {
         if(!(isalnum(vertexName[i]) || vertexName[i] == '[' ||
            vertexName[i] == ']' || vertexName[i] == ';')){
             return false;
@@ -19,7 +19,7 @@ bool Graph::checkVertexPossible(const Vertex& vertexName){
 
     int bracketsNum = 0;
 
-    for (int i = 0; i < vertexName.length(); ++i) {
+    for (unsigned int i = 0; i < vertexName.length(); ++i) {
         if(vertexName[i] == '['){
             bracketsNum++;
         }else if(vertexName[i] == ']'){
