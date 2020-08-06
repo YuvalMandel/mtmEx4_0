@@ -21,7 +21,7 @@ public:
     static std::string removeSpacesFromSides(const std::string& command);
     static int returnEqualsSignLocation(const std::string& command);
     Graph returnGraphFromExpression(const std::string& exp);
-    static bool checkValidGraphName(const std::string& command);
+    bool checkValidGraphName(const std::string& command);
     Graph creatGraphFromString(const std::string& exp);
     void addGraph(const std::string& graph_name,const Graph& graph);
     Edge createEdgeFromString(const std::string& str);
@@ -29,9 +29,11 @@ public:
                              const std::string& rightSide,
                              const char& symbol);
     std::string returnGraphName(const std::string& graphName);
+    bool checkReservedWord(const std::string& word);
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
     class BadEdge: public std::exception{};
+    class BadVertex: public std::exception{};
     class noGraph: public std::exception{};
 
 };

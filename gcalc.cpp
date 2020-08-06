@@ -53,6 +53,20 @@ string Gcalc::removeSpacesFromSides(const std::string& command){
 
 }
 
+bool Gcalc::checkReservedWord(const std::string& word){
+
+    string shaved_word = this -> removeSpacesFromSides(word);
+
+    if(shaved_word == "print" || shaved_word == "delete" ||
+        shaved_word == "reset" || shaved_word == "who" ||
+        shaved_word == "quit" ){
+        return true;
+    }
+
+    return false;
+
+}
+
 bool Gcalc::checkSpecialCommand(const std::string& command, const std::string&
 token){
 
@@ -79,6 +93,11 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
     int location = str.find(',');
 
     if (location==std::string::npos)
+        throw BadEdge();
+
+    int bad_location = str.find(',');
+
+    if (!(bad_location==std::string::npos))
         throw BadEdge();
 
     if(str[0] == '<' && str.back() == '>'){
@@ -113,6 +132,10 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
         }else{
 
             current = this -> removeSpacesFromSides(current);
+
+            if(this -> checkReservedWord(current)){
+                throw BadVertex();
+            }
 
             if(!current.empty()){
                 g.addVertex(current);
@@ -284,6 +307,10 @@ bool Gcalc::checkValidGraphName(const string& command){
         }
     }
 
+    if(this -> checkReservedWord(command)){
+       return false;
+    }
+
     return true;
 
 }
@@ -394,7 +421,10 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         } catch(noGraph& e){
             os << "Error: No Graph Exists with this name" << endl;
             return 0;
-        } catch(Graph::BadVertex& e){
+        } catch(BadVertex& e){
+            os << "Error: Invalid Vertex" << endl;
+            return 0;
+        }catch(Graph::BadVertex& e){
             os << "Error: Invalid Vertex" << endl;
             return 0;
         } catch(BadEdge& e){
