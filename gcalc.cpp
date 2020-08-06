@@ -2,7 +2,7 @@
 #include <iterator>
 #include <cctype>
 #include <iostream>
-#include <fstream>
+
 using std::endl;
 using std::string;
 using std::map;
@@ -346,7 +346,8 @@ string Gcalc::returnGraphName(const string& graphName){
 void Gcalc::save(const std::string& command){
 
     string shaved_command = this -> removeSpacesFromSides(command);
-    if(shaved_command[0] == '(' && shaved_command[shaved_command.length() - 1] == ')'){
+    if(shaved_command[0] == '(' &&
+    shaved_command[shaved_command.length() - 1] == ')'){
         shaved_command.erase(0,1);
         shaved_command.erase(shaved_command.size() - 1, 1);;
     }
@@ -509,7 +510,6 @@ void prompt(){
 
     while(!exit){
 
-        // TODO: might need " " after Gcalc>
         std::cout << "Gcalc> ";
         getline(std::cin,command);
 
@@ -528,13 +528,11 @@ void bash(const string& inputFileName, const string& outputFileName){
     std::ifstream input_file(inputFileName.c_str());
     std::ofstream output_file(outputFileName.c_str());
 
-//    input_file.open(inputFileName, std::ios_base::in);
-//    output_file.open(outputFileName, std::ios_base::out);
-
     if (input_file.is_open() ) {
         if (output_file.is_open()) {
             {
                 while (getline(input_file, command) && !exit) {
+                    std::cout << command << endl;
                     exit = gcalc.handleCommand(output_file, command);
                 }
                 input_file.close();
