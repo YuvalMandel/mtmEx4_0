@@ -265,11 +265,12 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    std::cout << "shaved_exp before brackets: '" << shaved_exp << endl;
-    std::cout << "shaved_exp[0]: '" << shaved_exp[0] << "'" << endl;
-    std::cout << shaved_exp[shaved_exp.length() - 1] << endl;
-    std::cout << shaved_exp[shaved_exp.length() - 2] << endl;
-    std::cout << "shaved_exp.length(): " << shaved_exp.length() << endl;
+//    std::cout << "shaved_exp before brackets: '" << shaved_exp << endl;
+//    std::cout << "shaved_exp[0]: '" << shaved_exp[0] << "'" << endl;
+//    std::cout << shaved_exp[shaved_exp.length() - 1] << endl;
+//    std::cout << shaved_exp[shaved_exp.length() - 2] << endl;
+//    std::cout << "shaved_exp.length(): " << shaved_exp.length() << endl;
+//    std::cout << "exp.length(): " << exp.length() << endl;
 
     if(shaved_exp[0] == '{' && shaved_exp[shaved_exp.length() - 1] == '}'){
         std::cout << "got in side {} if"  << endl;
@@ -473,10 +474,16 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
             return 0;
         }
 
+        std::cout << "shaved_command length: " << shaved_command.length() <<
+        endl;
+
         // On the right side, we will calc the expression to a graph.
         string graph_expression = this -> removeSpacesFromSides(
                 shaved_command.substr(equalsSignLocation + 1,
                         shaved_command.length() -equalsSignLocation - 1));
+
+        std::cout << "graph_expression length: " << graph_expression.length()
+        << endl;
 
         Graph graph;
 
