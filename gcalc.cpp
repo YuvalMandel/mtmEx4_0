@@ -261,7 +261,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    std::cout << "shaved_exp before brackets: " << shaved_exp << endl;
+    std::cout << "shaved_exp before brackets: '" << shaved_exp << "'" << endl;
     std::cout << "shaved_exp[0]: '" << shaved_exp[0] << "'" << endl;
     std::cout << "shaved_exp[shaved_exp.length() - 1]: '" <<
     shaved_exp[shaved_exp.length() - 1] << "'" << endl;
