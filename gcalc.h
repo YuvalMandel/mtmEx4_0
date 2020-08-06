@@ -13,7 +13,7 @@ private:
 
 public:
 
-    void remove(const std::string& graph_name);
+    void remove(const std::string& graphName);
     void reset();
     int handleCommand(std::ostream &os, const std::string& command);
     bool checkSpecialCommand(const std::string& command,
@@ -30,11 +30,13 @@ public:
                              const char& symbol);
     std::string returnGraphName(const std::string& graphName);
     bool checkReservedWord(const std::string& word);
+    void save(const std::string& command);
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
     class BadEdge: public std::exception{};
     class BadVertex: public std::exception{};
     class noGraph: public std::exception{};
+    class BadSave: public std::exception{};
 
 };
 

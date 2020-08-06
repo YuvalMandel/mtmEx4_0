@@ -9,10 +9,10 @@ using std::map;
 using std::exception;
 using std::getline;
 
-void Gcalc::remove(const std::string& graph_name){
+void Gcalc::remove(const std::string& graphName){
 
     std::map<std::string, Graph>::iterator it;
-    it = this -> graphs.find(graph_name);
+    it = this -> graphs.find(graphName);
     this -> graphs.erase(it);
 
 }
@@ -59,7 +59,8 @@ bool Gcalc::checkReservedWord(const std::string& word){
 
     if(shaved_word == "print" || shaved_word == "delete" ||
         shaved_word == "reset" || shaved_word == "who" ||
-        shaved_word == "quit" ){
+        shaved_word == "quit" || shaved_word == "saved" ||
+        shaved_word == "load"){
         return true;
     }
 
@@ -95,7 +96,8 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
     if (location==std::string::npos)
         throw BadEdge();
 
-    int bad_location = str.find(',');
+    int bad_location = str.substr(location+1, str.size() - location - 1).find
+            (',');
 
     if (!(bad_location==std::string::npos))
         throw BadEdge();
@@ -201,10 +203,6 @@ Graph Gcalc::calcTwoExpressions(const std::string& leftSide,
 
     Graph leftGraph = this -> returnGraphFromExpression(leftSide);
     Graph rightGraph = this -> returnGraphFromExpression(rightSide);
-
-    if(symbol == '+'){
-        return leftGraph + rightGraph;
-    }
 
     switch (symbol) {
         case '+' : return leftGraph + rightGraph;
@@ -335,6 +333,38 @@ string Gcalc::returnGraphName(const string& graphName){
 
 }
 
+void Gcalc::save(const std::string& command){
+
+    string shaved_command = this -> removeSpacesFromSides(command);
+    if(shaved_command[0] == '(' && shaved_command.back() == ')'){
+        shaved_command.erase(0,1);
+        shaved_command.pop_back();
+    }
+
+    int location = shaved_command.find(',');
+
+    if (location==std::string::npos)
+        throw BadSave();
+
+    int bad_location = shaved_command.substr(
+            location+1, shaved_command.size() - location - 1).find(',');
+
+    if (!(bad_location==std::string::npos))
+        throw BadSave();
+
+    string graphName = this -> removeSpacesFromSides(
+            shaved_command.substr(0,location));
+    string fileName = this -> removeSpacesFromSides(
+            shaved_command.substr(
+                    location + 1, shaved_command.size() - location - 1));
+
+    std::map<std::string, Graph>::iterator it;
+    it = this -> graphs.find(graphName);
+    it -> second.saveGraphToFile(fileName);
+
+
+}
+
 int Gcalc::handleCommand(std::ostream &os, const string& command){
 
     // First, we will remove any spaces from the sides.
@@ -385,15 +415,19 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         return 0;
 
     }
-//    else if(checkSpecialCommand(shaved_command, "save")){
-//
-//        return 0;
-//
-//    } else if(checkSpecialCommand(shaved_command, "load")){
-//
-//        return 0;
-//
-//    }
+    else if(checkSpecialCommand(shaved_command, "save")){
+
+        expression_to_calc = shaved_command.substr(
+                4, shaved_command.length() - 4);
+
+        this -> save(expression_to_calc);
+        return 0;
+
+    } else if(checkSpecialCommand(shaved_command, "load")){
+
+        return 0;
+
+    }
 
     // We will check if there is a single "="
     int equalsSignLocation = this -> returnEqualsSignLocation(shaved_command);
@@ -454,6 +488,7 @@ void prompt(){
 
     while(!exit){
 
+        // TODO: might need " " after Gcalc>
         std::cout << "Gcalc>";
         getline(std::cin,command);
 

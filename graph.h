@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <set>
+#include <fstream>
 
 #define Vertex std::string
 #define Edge std::pair<Vertex, Vertex>
@@ -32,6 +33,14 @@ public:
     bool checkVertexPossible(const Vertex& e);
     void addVertex(const Vertex& v);
     void addEdge(const Edge& e);
+
+//    std::string convertVertexesToString();
+//    std::string convertEdgesToString();
+//    int graphVertexesNum();
+//    int graphEdgesNum();
+
+    void saveGraphToFile(const std::string& fileName);
+
     friend Graph operator+(const Graph& g1, const Graph& g2);
     friend Graph operator-(const Graph& g1, const Graph& g2);
     friend Graph operator^(const Graph& g1, const Graph& g2);

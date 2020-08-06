@@ -1,9 +1,7 @@
 #include "graph.h"
 #include <algorithm>
 #include <set>
-//using namespace Graph;
 using std::endl;
-//using std::set_union;
 
 using std::ostream;
 using std::set;
@@ -214,6 +212,104 @@ ostream& operator<<(ostream &os, const Graph &g){
     return os;
 
 }
+
+void Graph::saveGraphToFile(const std::string& fileName){
+
+    std::ofstream outfile(fileName, std::ios_base::binary);
+
+    // First we will write the number of vertexes.
+    int num_of_vertexes = this -> vertexes.size();
+    outfile.write((char*)&num_of_vertexes, sizeof(int));
+
+    // Now we will write the number of edges.
+    int num_of_edges = this -> edges.size();
+    outfile.write((char*)&num_of_edges, sizeof(int));
+
+    // Now each vertex.
+    for(const Vertex& v : this -> vertexes){
+
+        int vertexSize = v.size();
+        outfile.write((char*)&vertexSize, sizeof(int));
+
+        for(char c : v){
+            outfile.write(&c, sizeof(char));
+        }
+    }
+
+    // And each Edge.
+    for(const Edge& e : this -> edges){
+
+        int vertexSize = e.first.size();
+        outfile.write((char*)&vertexSize, sizeof(int));
+
+        for(char c : e.first){
+            outfile.write(&c, sizeof(char));
+        }
+
+        vertexSize = e.second.size();
+        outfile.write((char*)&vertexSize, sizeof(int));
+
+        for(char c : e.second){
+            outfile.write(&c, sizeof(char));
+        }
+
+    }
+
+    outfile.close();
+
+}
+
+//string Graph::convertVertexesToString(){
+//
+//    string current;
+//
+//    for(const Vertex& v : this -> vertexes){
+//        current += std::to_string(v.size());
+//        current += v;
+//    }
+//
+//    return current;
+//
+//}
+//
+//string Graph::convertEdgesToString(){
+//
+//    string current;
+//
+//    for(const Edge& e : this -> edges){
+//        current += e.first + e.second;
+//    }
+//
+//    return current;
+//
+//}
+//
+//int Graph::graphVertexesNum(){
+//    return this -> vertexes.size();
+//}
+//
+//int Graph::graphEdgesNum(){
+//    return this -> edges.size();
+//}
+
+//    unsigned int mum_of_vertexes = this -> vertexes.size();
+//    unsigned int mum_of_edges = this -> edges.size();
+//
+//    unsigned int sum_size = 4+4; //for num of vertexes and num
+//
+//    for(const Vertex& v : this -> vertexes){
+//        vertex_size = v.size();
+//    }
+//
+//    os << "$" << endl;
+//
+//    for(const Edge& e : g.edges){
+//
+//        os << e << endl;
+//
+//    }
+//
+//    return os;
 
 //int main(){
 //
