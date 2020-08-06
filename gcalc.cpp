@@ -510,7 +510,7 @@ void prompt(){
     while(!exit){
 
         // TODO: might need " " after Gcalc>
-        std::cout << "Gcalc>";
+        std::cout << "Gcalc> ";
         getline(std::cin,command);
 
         exit = gcalc.handleCommand(std::cout, command);
