@@ -1,5 +1,5 @@
 CC=/usr/local/bin/gcc
-CXX=/usr/local/bin/g++
+CXX=g++
 OBJS= gcalc.o graph.o
 EXEC=gcalc
 SRVR_FLAGS =
