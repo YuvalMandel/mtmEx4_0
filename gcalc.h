@@ -25,7 +25,7 @@ public:
     Graph getGraph(const std::string& graph_name);
     Graph creatGraphFromString(const std::string& exp);
     void addGraph(const std::string& graph_name,const Graph& graph);
-    Edge creatEdgeFromString(const std::string& str);
+    Edge createEdgeFromString(const std::string& str);
     Graph calcTwoExpressions(const std::string& leftSide,
                              const std::string& rightSide,
                              const char& symbol);

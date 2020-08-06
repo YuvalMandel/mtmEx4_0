@@ -10,9 +10,47 @@ using std::set;
 using std::string;
 using std::pair;
 
+bool Graph::checkVertexPossible(const Vertex& vertexName){
+
+    for (int i = 0; i < vertexName.length(); ++i) {
+        if(!(isalnum(vertexName[i]) || vertexName[i] == '[' ||
+           vertexName[i] == ']' || vertexName[i] == ';')){
+            return false;
+        }
+    }
+
+    int bracketsNum = 0;
+
+    for (int i = 0; i < vertexName.length(); ++i) {
+        if(vertexName[i] == '['){
+            bracketsNum++;
+        }else if(vertexName[i] == ']'){
+            bracketsNum--;
+            if(bracketsNum < 0){
+                return false;
+            }
+        }else if(vertexName[i] == ';'){
+            if(bracketsNum == 0){
+                return false;
+            }
+        }
+    }
+
+    if(bracketsNum != 0){
+        return false;
+    }
+
+    return true;
+
+}
+
 void Graph::addVertex(const Vertex& v){
 
-    this -> vertexes.insert(v);
+    if(this -> checkVertexPossible(v)){
+        this -> vertexes.insert(v);
+    }else{
+        throw BadVertex();
+    }
 
 }
 
@@ -45,6 +83,8 @@ void Graph::addEdge(const Edge& e){
 
     if(this -> checkEdgePossible(e)){
         this -> edges.insert(e);
+    }else{
+        throw BadEdge();
     }
 }
 

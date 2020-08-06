@@ -77,13 +77,16 @@ token){
 
 }
 
-Edge Gcalc::creatEdgeFromString(const std::string& str){
+Edge Gcalc::createEdgeFromString(const std::string& str){
 
     Edge e;
 
-    if(str[0] == '<' && str.back() == '>'){
+    int location = str.find(',');
 
-        int location = str.find(',');
+    if (location==std::string::npos)
+        throw BadEdge();
+
+    if(str[0] == '<' && str.back() == '>'){
 
         string leftSide = str.substr(1,location-1);
         string rightSide = str.substr(location+1,str.length()-location-2);
@@ -151,7 +154,7 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
                     current = this->removeSpacesFromSides(current);
 
                     if (!current.empty()) {
-                        Edge e = this->creatEdgeFromString(current);
+                        Edge e = this->createEdgeFromString(current);
                         g.addEdge(e);
                         current = "";
                     }
@@ -359,15 +362,16 @@ int Gcalc::handleCommand(const string& command){
 
         return 0;
 
-    } else if(checkSpecialCommand(shaved_command, "save")){
-
-        return 0;
-
-    } else if(checkSpecialCommand(shaved_command, "load")){
-
-        return 0;
-
     }
+//    else if(checkSpecialCommand(shaved_command, "save")){
+//
+//        return 0;
+//
+//    } else if(checkSpecialCommand(shaved_command, "load")){
+//
+//        return 0;
+//
+//    }
 
     // We will check if there is a single "="
     int equalsSignLocation = this -> returnEqualsSignLocation(shaved_command);
@@ -394,6 +398,15 @@ int Gcalc::handleCommand(const string& command){
             graph = this -> returnGraphFromExpression(graph_expression);
         } catch(noGraph& e){
             std::cout << "Error: No Graph Exists with this name" << endl;
+            return 0;
+        } catch(Graph::BadVertex& e){
+            std::cout << "Error: Invalid Vertex" << endl;
+            return 0;
+        } catch(BadEdge& e){
+            std::cout << "Error: Invalid Edge" << endl;
+            return 0;
+        }catch(Graph::BadEdge& e){
+            std::cout << "Error: Invalid Edge" << endl;
             return 0;
         }
 

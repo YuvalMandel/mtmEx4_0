@@ -29,6 +29,7 @@ private:
 public:
 
     bool checkEdgePossible(const Edge& e);
+    bool checkVertexPossible(const Vertex& e);
     void addVertex(const Vertex& v);
     void addEdge(const Edge& e);
     friend Graph operator+(const Graph& g1, const Graph& g2);
@@ -37,6 +38,9 @@ public:
     friend Graph operator*(const Graph& g1, const Graph& g2);
     friend Graph operator!(const Graph& g);
     friend std::ostream& operator<<(std::ostream &os, const Graph &g);
+
+    class BadVertex: public std::exception{};
+    class BadEdge: public std::exception{};
 
 };
 
