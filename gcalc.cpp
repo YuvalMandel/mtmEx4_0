@@ -274,7 +274,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     }
 
-    auto it = this -> graphs.find(shaved_exp);
+    map<string,Graph>::const_iterator it = this -> graphs.find(shaved_exp);
     if (it != this -> graphs.end()){
         return it -> second;
     }
