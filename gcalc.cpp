@@ -46,8 +46,11 @@ string Gcalc::removeSpacesFromSides(const std::string& command){
         current_string.erase(0, 1);
     }
 
-    while(current_string[current_string.length() - 1] == ' '){
-        current_string.erase(current_string.size() - 1, 1);
+    int i = current_string.length() - 1;
+
+    while(current_string[i] == ' '){
+        current_string.erase(i, 1);
+        i--;
     }
 
     return current_string;
