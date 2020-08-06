@@ -528,8 +528,8 @@ void bash(const string& inputFileName, const string& outputFileName){
     std::fstream input_file;
     std::fstream output_file;
 
-    input_file.open(inputFileName, std::fstream::in);
-    output_file.open(outputFileName, std::fstream::out);
+    input_file.open(inputFileName, std::ios_base::in);
+    output_file.open(outputFileName, std::ios_base::out);
 
     if (input_file.is_open() ) {
         if (output_file.is_open()) {
