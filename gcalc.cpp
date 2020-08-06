@@ -525,8 +525,8 @@ void bash(const string& inputFileName, const string& outputFileName){
     string command;
     Gcalc gcalc;
 
-    std::ifstream input_file(inputFileName);
-    std::ofstream output_file(outputFileName);
+    std::ifstream input_file(inputFileName.c_str());
+    std::ofstream output_file(outputFileName.c_str());
 
 //    input_file.open(inputFileName, std::ios_base::in);
 //    output_file.open(outputFileName, std::ios_base::out);
