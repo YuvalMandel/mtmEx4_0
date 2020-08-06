@@ -264,6 +264,14 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
+    if(checkSpecialCommand(shaved_exp, "load")){
+
+        shaved_exp = shaved_exp.substr(4, shaved_exp.length() - 4);
+
+        return this -> load(shaved_exp);
+
+    }
+
     auto it = this -> graphs.find(shaved_exp);
     if (it != this -> graphs.end()){
         return it -> second;
@@ -362,6 +370,18 @@ void Gcalc::save(const std::string& command){
     it = this -> graphs.find(graphName);
     it -> second.saveGraphToFile(fileName);
 
+}
+
+Graph Gcalc::load(const std::string& exp){
+
+    string shaved_exp = this -> removeSpacesFromSides(exp);
+    if(shaved_exp[0] == '(' && shaved_exp.back() == ')'){
+        shaved_exp.erase(0,1);
+        shaved_exp.pop_back();
+        shaved_exp = this -> removeSpacesFromSides(shaved_exp);
+    }
+
+    return loadGraphFromFile(shaved_exp);
 
 }
 
@@ -423,10 +443,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         this -> save(expression_to_calc);
         return 0;
 
-    } else if(checkSpecialCommand(shaved_command, "load")){
-
-        return 0;
-
     }
 
     // We will check if there is a single "="
@@ -466,6 +482,9 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
             return 0;
         }catch(Graph::BadEdge& e){
             os << "Error: Invalid Edge" << endl;
+            return 0;
+        }catch(Graph::CantReadFile& e){
+            os << "Error: Can't read the file" << endl;
             return 0;
         }
 

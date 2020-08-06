@@ -41,6 +41,8 @@ public:
 
     void saveGraphToFile(const std::string& fileName);
 
+    friend Graph loadGraphFromFile(const std::string& fileName);
+
     friend Graph operator+(const Graph& g1, const Graph& g2);
     friend Graph operator-(const Graph& g1, const Graph& g2);
     friend Graph operator^(const Graph& g1, const Graph& g2);
@@ -50,8 +52,10 @@ public:
 
     class BadVertex: public std::exception{};
     class BadEdge: public std::exception{};
+    class CantReadFile: public std::exception{};
 
 };
 
+Graph loadGraphFromFile(const std::string& fileName);
 
 #endif //MTMEX4_0_GRAPH_H

@@ -31,6 +31,7 @@ public:
     std::string returnGraphName(const std::string& graphName);
     bool checkReservedWord(const std::string& word);
     void save(const std::string& command);
+    Graph load(const std::string& exp);
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
     class BadEdge: public std::exception{};

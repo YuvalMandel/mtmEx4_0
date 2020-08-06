@@ -228,8 +228,8 @@ void Graph::saveGraphToFile(const std::string& fileName){
     // Now each vertex.
     for(const Vertex& v : this -> vertexes){
 
-        int vertexSize = v.size();
-        outfile.write((char*)&vertexSize, sizeof(int));
+        int vertex_size = v.size();
+        outfile.write((char*)&vertex_size, sizeof(int));
 
         for(char c : v){
             outfile.write(&c, sizeof(char));
@@ -239,15 +239,15 @@ void Graph::saveGraphToFile(const std::string& fileName){
     // And each Edge.
     for(const Edge& e : this -> edges){
 
-        int vertexSize = e.first.size();
-        outfile.write((char*)&vertexSize, sizeof(int));
+        int vertex_size = e.first.size();
+        outfile.write((char*)&vertex_size, sizeof(int));
 
         for(char c : e.first){
             outfile.write(&c, sizeof(char));
         }
 
-        vertexSize = e.second.size();
-        outfile.write((char*)&vertexSize, sizeof(int));
+        vertex_size = e.second.size();
+        outfile.write((char*)&vertex_size, sizeof(int));
 
         for(char c : e.second){
             outfile.write(&c, sizeof(char));
@@ -256,6 +256,84 @@ void Graph::saveGraphToFile(const std::string& fileName){
     }
 
     outfile.close();
+
+}
+
+Graph loadGraphFromFile(const std::string& fileName){
+
+    std::ifstream infile(fileName, std::ios_base::binary);
+
+    if(!infile.is_open()){
+        throw Graph::CantReadFile();
+    }
+
+    Graph g;
+
+    // Read number of vertexes.
+    int num_of_vertexes;
+    infile.read((char*)&num_of_vertexes, sizeof(int));
+
+    // Read number of edges.
+    int num_of_edges;
+    infile.read((char*)&num_of_edges, sizeof(int));
+
+    // Read each vertex.
+    for(int i = 0; i < num_of_vertexes; ++i) {
+
+        // We will read the firs 4 bytes (int) to know how much chars to read.
+        int vertex_size;
+        infile.read((char*)&vertex_size, sizeof(int));
+
+        Vertex v;
+        char c;
+
+        for(int j = 0; j < vertex_size; ++j){
+            infile.read((char*)&c, sizeof(char));
+            v += c;
+        }
+
+        g.addVertex(v);
+
+    }
+
+    // Read each edge.
+    for(int i = 0; i < num_of_edges; ++i) {
+
+        int vertex_size;
+        Vertex v;
+        char c;
+        Edge e;
+
+        // First Vertex
+
+        // We will read the first 4 bytes (int) to know how much chars to read.
+        infile.read((char*)&vertex_size, sizeof(int));
+
+        for(int j = 0; j < vertex_size; ++j){
+            infile.read((char*)&c, sizeof(char));
+            v += c;
+        }
+
+        e.first = v;
+
+        // Second vertex
+        v = "";
+
+        // We will read the first 4 bytes (int) to know how much chars to read.
+        infile.read((char*)&vertex_size, sizeof(int));
+
+        for(int j = 0; j < vertex_size; ++j){
+            infile.read((char*)&c, sizeof(char));
+            v += c;
+        }
+
+        e.second = v;
+
+        g.addEdge(e);
+
+    }
+
+    return g;
 
 }
 
