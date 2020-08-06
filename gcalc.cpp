@@ -551,8 +551,8 @@ void bash(const string& inputFileName, const string& outputFileName){
     if (input_file.is_open() ) {
         if (output_file.is_open()) {
             {
-                while (getline(input_file, command) && !exit) {
-                    std::cout << command << endl;
+                while(getline(input_file, command) && !exit) {
+                    std::cout << command << "abc" << endl;
                     std::cout << "direct command length: " << command.length()
                     << endl;
                     exit = gcalc.handleCommand(output_file, command);
