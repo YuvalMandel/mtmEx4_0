@@ -2,6 +2,7 @@
 #include <iterator>
 #include <cctype>
 #include <iostream>
+#include <fstream>
 using std::endl;
 using std::string;
 using std::map;
@@ -313,14 +314,14 @@ string Gcalc::returnGraphName(const string& graphName){
 
 }
 
-int Gcalc::handleCommand(const string& command){
+int Gcalc::handleCommand(std::ostream &os, const string& command){
 
     // First, we will remove any spaces from the sides.
     string shaved_command = this -> removeSpacesFromSides(command);
 
     // We will check if the commands are either "who", "reset" or "quit".
     if(shaved_command == "who"){
-        std::cout << *this;
+        os << *this;
         return 0;
     } else if (shaved_command == "reset"){
         this -> reset();
@@ -344,11 +345,11 @@ int Gcalc::handleCommand(const string& command){
         try{
             g = this -> returnGraphFromExpression(expression_to_calc);
         }catch(noGraph& e){
-            std::cout << "Error: No Graph Exists with this name" << endl;
+            os << "Error: No Graph Exists with this name" << endl;
             return 0;
         }
 
-        std::cout << g;
+        os << g;
 
         return 0;
 
@@ -383,7 +384,7 @@ int Gcalc::handleCommand(const string& command){
                 shaved_command.substr(0, equalsSignLocation));
 
         if(!(this -> checkValidGraphName(graph_name))){
-            std::cout << "Error: Invalid Graph name" << endl;
+            os << "Error: Invalid Graph name" << endl;
             return 0;
         }
 
@@ -397,16 +398,16 @@ int Gcalc::handleCommand(const string& command){
         try {
             graph = this -> returnGraphFromExpression(graph_expression);
         } catch(noGraph& e){
-            std::cout << "Error: No Graph Exists with this name" << endl;
+            os << "Error: No Graph Exists with this name" << endl;
             return 0;
         } catch(Graph::BadVertex& e){
-            std::cout << "Error: Invalid Vertex" << endl;
+            os << "Error: Invalid Vertex" << endl;
             return 0;
         } catch(BadEdge& e){
-            std::cout << "Error: Invalid Edge" << endl;
+            os << "Error: Invalid Edge" << endl;
             return 0;
         }catch(Graph::BadEdge& e){
-            std::cout << "Error: Invalid Edge" << endl;
+            os << "Error: Invalid Edge" << endl;
             return 0;
         }
 
@@ -416,7 +417,7 @@ int Gcalc::handleCommand(const string& command){
     }
 
     // If all of them are false, this is an illegal command.
-    std::cout << "Error: Illegal command" << endl;
+    os << "Error: Illegal command" << endl;
     return 0;
 
 }
@@ -432,9 +433,32 @@ void prompt(){
         std::cout << "Gcalc>";
         getline(std::cin,command);
 
-        exit = gcalc.handleCommand(command);
+        exit = gcalc.handleCommand(std::cout, command);
 
     };
+
+}
+
+void bash(const string& inputFileName, const string& outputFileName){
+
+    int exit = 0;
+    string command;
+    Gcalc gcalc;
+
+    std::ifstream input_file(inputFileName);
+    std::ofstream output_file(outputFileName);
+
+    if (input_file.is_open() && output_file.is_open())
+    {
+        while(getline(input_file,command) && !exit)
+        {
+            exit = gcalc.handleCommand(output_file, command);
+        }
+        input_file.close();
+        output_file.close();
+    }
+
+    else std::cout << "Error: Unable to open file";
 
 }
 
@@ -447,7 +471,8 @@ int main(int argc, char *argv[]){
 
     } else if (argc == 3){
 
-        std::cout << argv[1] << " " << argv[2] << endl;
+        bash(argv[1], argv[2]);
+        return 0;
 
     }else{
 
