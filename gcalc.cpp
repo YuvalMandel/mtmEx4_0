@@ -402,6 +402,8 @@ Graph Gcalc::load(const std::string& exp){
 
 int Gcalc::handleCommand(std::ostream &os, const string& command){
 
+    std::cout << "command length: " << command.length() << endl;
+
     // First, we will remove any spaces from the sides.
     string shaved_command = this -> removeSpacesFromSides(command);
 
