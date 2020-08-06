@@ -19,10 +19,9 @@ public:
     bool checkSpecialCommand(const std::string& command,
             const std::string& token);
     static std::string removeSpacesFromSides(const std::string& command);
-    int returnEqualsSignLocation(const std::string& command);
+    static int returnEqualsSignLocation(const std::string& command);
     Graph returnGraphFromExpression(const std::string& exp);
-    bool checkValidGraphName(const std::string& command);
-    Graph getGraph(const std::string& graph_name);
+    static bool checkValidGraphName(const std::string& command);
     Graph creatGraphFromString(const std::string& exp);
     void addGraph(const std::string& graph_name,const Graph& graph);
     Edge createEdgeFromString(const std::string& str);

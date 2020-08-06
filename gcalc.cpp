@@ -23,12 +23,6 @@ void Gcalc::reset(){
 
 }
 
-Graph Gcalc::getGraph(const std::string& graph_name){
-
-    return this -> graphs[graph_name];
-
-}
-
 std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc){
 
     if(gcalc.graphs.empty()){
@@ -212,7 +206,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    int i = shaved_exp.length() - 1;
+    int i = int(shaved_exp.length()) - 1;
 
     int brackets_count = 0;
 
@@ -249,7 +243,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-    std::map<string,Graph>::iterator it = this -> graphs.find(shaved_exp);
+    auto it = this -> graphs.find(shaved_exp);
     if (it != this -> graphs.end()){
         return it -> second;
     }
@@ -359,7 +353,7 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
                 6, shaved_command.length() - 6);
         expression_to_calc = this ->returnGraphName(expression_to_calc);
 
-        this -> graphs.erase(expression_to_calc);
+        this -> remove(expression_to_calc);
 
         return 0;
 
@@ -445,20 +439,23 @@ void bash(const string& inputFileName, const string& outputFileName){
     string command;
     Gcalc gcalc;
 
-    std::ifstream input_file(inputFileName);
-    std::ofstream output_file(outputFileName);
+    std::ifstream input_file;
+    std::ofstream output_file;
 
-    if (input_file.is_open() && output_file.is_open())
-    {
-        while(getline(input_file,command) && !exit)
-        {
-            exit = gcalc.handleCommand(output_file, command);
-        }
-        input_file.close();
-        output_file.close();
-    }
+    input_file.open(inputFileName, std::ios::in);
+    output_file.open(outputFileName, std::ios::out);
 
-    else std::cout << "Error: Unable to open file";
+    if (input_file.is_open() ) {
+        if (output_file.is_open()) {
+            {
+                while (getline(input_file, command) && !exit) {
+                    exit = gcalc.handleCommand(output_file, command);
+                }
+                input_file.close();
+                output_file.close();
+            }
+        }else std::cout << "Error: Unable to open output file";
+    }else std::cout << "Error: Unable to open input file";
 
 }
 
@@ -472,12 +469,13 @@ int main(int argc, char *argv[]){
     } else if (argc == 3){
 
         bash(argv[1], argv[2]);
-        return 0;
 
     }else{
 
         std::cout << "Error: Bad amount of args" << endl;
 
     }
+
+    return 0;
 
 }
