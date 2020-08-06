@@ -29,7 +29,8 @@ std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc){
         return os;
     }
 
-    for(auto it = gcalc.graphs.begin(); it != gcalc.graphs.end(); ++it) {
+    for(map<string,Graph>::const_iterator it = gcalc.graphs.begin();
+    it != gcalc.graphs.end(); ++it) {
         os << (it -> first) << endl;
     }
 
