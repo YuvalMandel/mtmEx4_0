@@ -47,7 +47,7 @@ string Gcalc::removeSpacesFromSides(const std::string& command){
     }
 
     while(current_string[current_string.length() - 1] == ' '){
-        current_string.erase(0, current_string.size() - 1);;
+        current_string.erase(current_string.size() - 1, 1);;
     }
 
     return current_string;
@@ -224,7 +224,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
         shaved_exp.erase(0,1);
-        shaved_exp.erase(0, shaved_exp.size() - 1);;
+        shaved_exp.erase(shaved_exp.size() - 1, 1);;
         g = this -> returnGraphFromExpression(shaved_exp);
         return g;
     }
@@ -335,7 +335,7 @@ string Gcalc::returnGraphName(const string& graphName){
 
     if(shaved_name[0] == '(' && shaved_name[shaved_name.size() - 1] == ')'){
         shaved_name.erase(0,1);
-        shaved_name.erase(0, shaved_name.size() - 1);;
+        shaved_name.erase(shaved_name.size() - 1, 1);;
         return this -> returnGraphName(shaved_name);
     }
 
@@ -348,7 +348,7 @@ void Gcalc::save(const std::string& command){
     string shaved_command = this -> removeSpacesFromSides(command);
     if(shaved_command[0] == '(' && shaved_command[shaved_command.length() - 1] == ')'){
         shaved_command.erase(0,1);
-        shaved_command.erase(0, shaved_command.size() - 1);;
+        shaved_command.erase(shaved_command.size() - 1, 1);;
     }
 
     int location = shaved_command.find(',');
@@ -379,7 +379,7 @@ Graph Gcalc::load(const std::string& exp){
     string shaved_exp = this -> removeSpacesFromSides(exp);
     if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
         shaved_exp.erase(0,1);
-        shaved_exp.erase(0, shaved_exp.size() - 1);;
+        shaved_exp.erase(shaved_exp.size() - 1, 1);;
         shaved_exp = this -> removeSpacesFromSides(shaved_exp);
     }
 
@@ -525,11 +525,11 @@ void bash(const string& inputFileName, const string& outputFileName){
     string command;
     Gcalc gcalc;
 
-    std::ifstream input_file;
-    std::ofstream output_file;
+    std::fstream input_file;
+    std::fstream output_file;
 
-    input_file.open(inputFileName, std::ios::in);
-    output_file.open(outputFileName, std::ios::out);
+    input_file.open(inputFileName, std::fstream::in);
+    output_file.open(outputFileName, std::fstream::out);
 
     if (input_file.is_open() ) {
         if (output_file.is_open()) {
