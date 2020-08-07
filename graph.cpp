@@ -347,7 +347,11 @@ void destroy(Graph& g){
 }
 
 Graph addVertex(Graph& g, const Vertex& v){
-    g.addVertexToGraph(v);
+    try {
+        g.addVertexToGraph(v);
+    } catch(Graph::BadVertex&) {
+        std::cout << "Error: Invalid Vertex" << endl;
+    }
     return g;
 }
 
@@ -355,7 +359,11 @@ Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     Edge e;
     e.first = v1;
     e.second = v2;
-    g.addEdgeToGraph(e);
+    try {
+        g.addEdgeToGraph(e);
+    } catch(Graph::BadVertex&) {
+        std::cout << "Error: Invalid Edge" << endl;
+    }
     return g;
 }
 
