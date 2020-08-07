@@ -42,7 +42,7 @@ bool Graph::checkVertexPossible(const Vertex& vertexName){
 
 }
 
-void Graph::addVertex(const Vertex& v){
+void Graph::addVertexToGraph(const Vertex& v){
 
     if(this -> checkVertexPossible(v)){
         this -> vertexes.insert(v);
@@ -77,7 +77,7 @@ bool Graph::checkEdgePossible(const Edge& e){
 
 }
 
-void Graph::addEdge(const Edge& e){
+void Graph::addEdgeToGraph(const Edge& e){
 
     if(this -> checkEdgePossible(e)){
         this -> edges.insert(e);
@@ -292,7 +292,7 @@ Graph loadGraphFromFile(const std::string& fileName){
             v += c;
         }
 
-        g.addVertex(v);
+        g.addVertexToGraph(v);
 
     }
 
@@ -329,13 +329,70 @@ Graph loadGraphFromFile(const std::string& fileName){
 
         e.second = v;
 
-        g.addEdge(e);
+        g.addEdgeToGraph(e);
 
     }
 
     return g;
 
 }
+
+Graph Graph::create(){
+    Graph g;
+    return g;
+}
+
+void Graph::destroy(Graph& g){
+    g.~Graph();
+}
+
+Graph& Graph::addVertex(Graph& g, Vertex v){
+    g.addVertexToGraph(v);
+    return g;
+}
+
+Graph& Graph::addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+    Edge e;
+    e.first = v1;
+    e.second = v2;
+    g.addEdgeToGraph(e);
+    return g;
+}
+
+void Graph::disp(const Graph& g){
+    std::cout << g;
+}
+
+Graph& Graph::graphUnion(const Graph& graph_in1, const Graph& graph_in2,
+                  Graph& graph_out){
+    graph_out = graph_in1 + graph_in2;
+    return graph_out;
+}
+
+Graph& Graph::graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
+                         Graph& graph_out){
+    graph_out = graph_in1 ^ graph_in2;
+    return graph_out;
+}
+
+Graph& Graph::graphDifference(const Graph& graph_in1, const Graph& graph_in2,
+                                Graph& graph_out){
+    graph_out = graph_in1 - graph_in2;
+    return graph_out;
+}
+
+Graph& Graph::graphProduct(const Graph& graph_in1, const Graph& graph_in2,
+                              Graph& graph_out){
+    graph_out = graph_in1 * graph_in2;
+    return graph_out;
+}
+
+Graph& Graph::graphComplement(const Graph& graph_in1, Graph& graph_out){
+    graph_out = !graph_in1;
+    return graph_out;
+}
+
+
 
 //string Graph::convertVertexesToString(){
 //
@@ -399,13 +456,13 @@ Graph loadGraphFromFile(const std::string& fileName){
 //    Vertex v4 = "v4";
 //    Edge e12(v1,v2);
 //    Edge e34(v3,v4);
-//    g1.addVertex(v1);
-//    g1.addVertex(v2);
-//    g1.addVertex(v3);
-//    g2.addVertex(v3);
-//    g2.addVertex(v4);
-//    g1.addEdge(e12);
-//    g2.addEdge(e34);
+//    g1.addVertexToGraph(v1);
+//    g1.addVertexToGraph(v2);
+//    g1.addVertexToGraph(v3);
+//    g2.addVertexToGraph(v3);
+//    g2.addVertexToGraph(v4);
+//    g1.addEdgeToGraph(e12);
+//    g2.addEdgeToGraph(e34);
 //    Graph g3 = g1 + g2;
 //    Graph g4 = !g1;
 //    std::cout << g1 << endl;

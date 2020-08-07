@@ -29,15 +29,14 @@ private:
 
 public:
 
+    Graph() = default;
+    ~Graph() = default;
+    Graph& operator=(const Graph&) = default;
+
     bool checkEdgePossible(const Edge& e);
     bool checkVertexPossible(const Vertex& e);
-    void addVertex(const Vertex& v);
-    void addEdge(const Edge& e);
-
-//    std::string convertVertexesToString();
-//    std::string convertEdgesToString();
-//    int graphVertexesNum();
-//    int graphEdgesNum();
+    void addVertexToGraph(const Vertex& v);
+    void addEdgeToGraph(const Edge& e);
 
     void saveGraphToFile(const std::string& fileName);
 
@@ -53,6 +52,23 @@ public:
     class BadVertex: public std::exception{};
     class BadEdge: public std::exception{};
     class CantReadFile: public std::exception{};
+
+    Graph create();
+    void destroy(Graph& g);
+    Graph& addVertex(Graph& g, Vertex v);
+    Graph& addEdge(Graph& g, const Vertex& v1, const Vertex& v2);
+    void disp(const Graph& g);
+
+    Graph& graphUnion(const Graph& graph_in1, const Graph& graph_in2,
+                    Graph& graph_out);
+    Graph& graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
+                    Graph& graph_out);
+    Graph& graphDifference(const Graph& graph_in1, const Graph& graph_in2,
+                    Graph& graph_out);
+    Graph& graphProduct(const Graph& graph_in1, const Graph& graph_in2,
+                    Graph& graph_out);
+    Graph& graphComplement(const Graph& graph_in1, Graph& graph_out);
+
 
 };
 

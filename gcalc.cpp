@@ -146,7 +146,7 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
             }
 
             if(!current.empty()){
-                g.addVertex(current);
+                g.addVertexToGraph(current);
                 current = "";
             }
         }
@@ -158,7 +158,7 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
     current = this -> removeSpacesFromSides(current);
 
     if(!current.empty()){
-        g.addVertex(current);
+        g.addVertexToGraph(current);
         current = "";
     }
 
@@ -181,7 +181,7 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
 
                     if (!current.empty()) {
                         Edge e = this->createEdgeFromString(current);
-                        g.addEdge(e);
+                        g.addEdgeToGraph(e);
                         current = "";
                     }
 
