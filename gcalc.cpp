@@ -265,15 +265,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         return g;
     }
 
-//    std::cout << "shaved_exp before brackets: '" << shaved_exp << endl;
-//    std::cout << "shaved_exp[0]: '" << shaved_exp[0] << "'" << endl;
-//    std::cout << shaved_exp[shaved_exp.length() - 1] << endl;
-//    std::cout << shaved_exp[shaved_exp.length() - 2] << endl;
-//    std::cout << "shaved_exp.length(): " << shaved_exp.length() << endl;
-//    std::cout << "exp.length(): " << exp.length() << endl;
-
     if(shaved_exp[0] == '{' && shaved_exp[shaved_exp.length() - 1] == '}'){
-        std::cout << "got in side {} if"  << endl;
         g = this -> creatGraphFromString(shaved_exp);
         return g;
     }
@@ -402,8 +394,6 @@ Graph Gcalc::load(const std::string& exp){
 
 int Gcalc::handleCommand(std::ostream &os, const string& command){
 
-    std::cout << "command length: " << command.length() << endl;
-
     // First, we will remove any spaces from the sides.
     string shaved_command = this -> removeSpacesFromSides(command);
 
@@ -476,16 +466,10 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
             return 0;
         }
 
-        std::cout << "shaved_command length: " << shaved_command.length() <<
-        endl;
-
         // On the right side, we will calc the expression to a graph.
         string graph_expression = this -> removeSpacesFromSides(
                 shaved_command.substr(equalsSignLocation + 1,
                         shaved_command.length() -equalsSignLocation - 1));
-
-        std::cout << "graph_expression length: " << graph_expression.length()
-        << endl;
 
         Graph graph;
 
@@ -552,9 +536,6 @@ void bash(const string& inputFileName, const string& outputFileName){
         if (output_file.is_open()) {
             {
                 while(getline(input_file, command) && !exit) {
-                    std::cout << command << "abc" << endl;
-                    std::cout << "direct command length: " << command.length()
-                    << endl;
                     exit = gcalc.handleCommand(output_file, command);
                 }
                 input_file.close();
