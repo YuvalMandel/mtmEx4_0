@@ -4,7 +4,7 @@ OBJS= gcalc.o graph.o
 EXEC=gcalc
 SRVR_FLAGS =
 DEBUG_FLAG=
-COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG
+COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG -fPIC
 
 $(EXEC) :$(OBJS)
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
