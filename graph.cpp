@@ -346,12 +346,12 @@ void destroy(Graph& g){
     g.~Graph();
 }
 
-Graph& addVertex(Graph& g, const Vertex& v){
+Graph addVertex(Graph& g, const Vertex& v){
     g.addVertexToGraph(v);
     return g;
 }
 
-Graph& addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     Edge e;
     e.first = v1;
     e.second = v2;
@@ -363,31 +363,31 @@ void disp(const Graph& g){
     std::cout << g;
 }
 
-Graph& graphUnion(const Graph& graph_in1, const Graph& graph_in2,
+Graph graphUnion(const Graph& graph_in1, const Graph& graph_in2,
                   Graph& graph_out){
     graph_out = graph_in1 + graph_in2;
     return graph_out;
 }
 
-Graph& graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
+Graph graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
                          Graph& graph_out){
     graph_out = graph_in1 ^ graph_in2;
     return graph_out;
 }
 
-Graph& graphDifference(const Graph& graph_in1, const Graph& graph_in2,
+Graph graphDifference(const Graph& graph_in1, const Graph& graph_in2,
                                 Graph& graph_out){
     graph_out = graph_in1 - graph_in2;
     return graph_out;
 }
 
-Graph& graphProduct(const Graph& graph_in1, const Graph& graph_in2,
+Graph graphProduct(const Graph& graph_in1, const Graph& graph_in2,
                               Graph& graph_out){
     graph_out = graph_in1 * graph_in2;
     return graph_out;
 }
 
-Graph& graphComplement(const Graph& graph_in1, Graph& graph_out){
+Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
     graph_out = !graph_in1;
     return graph_out;
 }
