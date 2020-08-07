@@ -59,7 +59,7 @@ Graph loadGraphFromFile(const std::string& fileName);
 
 Graph create();
 void destroy(Graph& g);
-Graph& addVertex(Graph& g, Vertex v);
+Graph& addVertex(Graph& g, const Vertex& v);
 Graph& addEdge(Graph& g, const Vertex& v1, const Vertex& v2);
 void disp(const Graph& g);
 

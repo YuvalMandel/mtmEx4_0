@@ -346,7 +346,7 @@ void destroy(Graph& g){
     g.~Graph();
 }
 
-Graph& addVertex(Graph& g, Vertex v){
+Graph& addVertex(Graph& g, const Vertex& v){
     g.addVertexToGraph(v);
     return g;
 }
