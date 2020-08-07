@@ -337,21 +337,21 @@ Graph loadGraphFromFile(const std::string& fileName){
 
 }
 
-Graph Graph::create(){
+Graph create(){
     Graph g;
     return g;
 }
 
-void Graph::destroy(Graph& g){
+void destroy(Graph& g){
     g.~Graph();
 }
 
-Graph& Graph::addVertex(Graph& g, Vertex v){
+Graph& addVertex(Graph& g, Vertex v){
     g.addVertexToGraph(v);
     return g;
 }
 
-Graph& Graph::addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+Graph& addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     Edge e;
     e.first = v1;
     e.second = v2;
@@ -359,35 +359,35 @@ Graph& Graph::addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     return g;
 }
 
-void Graph::disp(const Graph& g){
+void disp(const Graph& g){
     std::cout << g;
 }
 
-Graph& Graph::graphUnion(const Graph& graph_in1, const Graph& graph_in2,
+Graph& graphUnion(const Graph& graph_in1, const Graph& graph_in2,
                   Graph& graph_out){
     graph_out = graph_in1 + graph_in2;
     return graph_out;
 }
 
-Graph& Graph::graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
+Graph& graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
                          Graph& graph_out){
     graph_out = graph_in1 ^ graph_in2;
     return graph_out;
 }
 
-Graph& Graph::graphDifference(const Graph& graph_in1, const Graph& graph_in2,
+Graph& graphDifference(const Graph& graph_in1, const Graph& graph_in2,
                                 Graph& graph_out){
     graph_out = graph_in1 - graph_in2;
     return graph_out;
 }
 
-Graph& Graph::graphProduct(const Graph& graph_in1, const Graph& graph_in2,
+Graph& graphProduct(const Graph& graph_in1, const Graph& graph_in2,
                               Graph& graph_out){
     graph_out = graph_in1 * graph_in2;
     return graph_out;
 }
 
-Graph& Graph::graphComplement(const Graph& graph_in1, Graph& graph_out){
+Graph& graphComplement(const Graph& graph_in1, Graph& graph_out){
     graph_out = !graph_in1;
     return graph_out;
 }
