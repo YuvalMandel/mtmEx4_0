@@ -14,6 +14,9 @@ MtmParkingLot.o: gcalc.cpp gcalc.h graph.h
 
 graph.o: graph.cpp graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
+	
+libgraph.a: $(OBJS)
+	ar -rs $@ $^
 
 clean:
 	rm -f $(OBJS) $(EXEC)
