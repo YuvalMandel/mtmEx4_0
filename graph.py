@@ -67,7 +67,31 @@ except AttributeError:
     _newclass = 0
 
 
+class Graph(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, Graph, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, Graph, name)
+    __repr__ = _swig_repr
+    def create(self): return _graph.Graph_create(self)
+    def destroy(self, *args): return _graph.Graph_destroy(self, *args)
+    def addVertex(self, *args): return _graph.Graph_addVertex(self, *args)
+    def addEdge(self, *args): return _graph.Graph_addEdge(self, *args)
+    def disp(self, *args): return _graph.Graph_disp(self, *args)
+    def graphUnion(self, *args): return _graph.Graph_graphUnion(self, *args)
+    def graphIntersection(self, *args): return _graph.Graph_graphIntersection(self, *args)
+    def graphDifference(self, *args): return _graph.Graph_graphDifference(self, *args)
+    def graphProduct(self, *args): return _graph.Graph_graphProduct(self, *args)
+    def graphComplement(self, *args): return _graph.Graph_graphComplement(self, *args)
+    def __init__(self): 
+        this = _graph.new_Graph()
+        try: self.this.append(this)
+        except: self.this = this
+    __swig_destroy__ = _graph.delete_Graph
+    __del__ = lambda self : None;
+Graph_swigregister = _graph.Graph_swigregister
+Graph_swigregister(Graph)
+
 # This file is compatible with both classic and new-style classes.
 
-cvar = _graph.cvar
 
