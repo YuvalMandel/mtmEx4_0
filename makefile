@@ -16,7 +16,7 @@ graph.o: graph.cpp graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 	
 libgraph.a: $(OBJS)
-	ar -rs $@ $^
+	ar -rs -fPIC $@ $^
 
 clean:
 	rm -f $(OBJS) $(EXEC)
