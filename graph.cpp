@@ -361,7 +361,7 @@ Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     e.second = v2;
     try {
         g.addEdgeToGraph(e);
-    } catch(Graph::BadVertex&) {
+    } catch(Graph::BadEdge&) {
         std::cout << "Error: Invalid Edge" << endl;
     }
     return g;
