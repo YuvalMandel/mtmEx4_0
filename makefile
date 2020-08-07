@@ -1,6 +1,6 @@
 CC=/usr/local/bin/gcc
 CXX=/usr/local/bin/g++
-OBJS= gcalc.o graph.o libgraph.a
+OBJS= gcalc.o graph.o
 EXEC=gcalc
 SRVR_FLAGS =
 DEBUG_FLAG=
