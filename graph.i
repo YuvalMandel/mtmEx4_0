@@ -14,4 +14,4 @@ public:
 	Graph& graphDifference(const Graph& graph_in1, const Graph& graph_in2, Graph& graph_out);
 	Graph& graphProduct(const Graph& graph_in1, const Graph& graph_in2, Graph& graph_out);
 	Graph& graphComplement(const Graph& graph_in1, Graph& graph_out);
-}
+};
