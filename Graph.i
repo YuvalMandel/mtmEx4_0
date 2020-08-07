@@ -1,6 +1,6 @@
-%module Graph
+%module graph
 %{
-#include "Graph.h"
+#include "graph.h"
 %}
 class Graph {
 public:
