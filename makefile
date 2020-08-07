@@ -7,15 +7,19 @@ DEBUG_FLAG=
 COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG
 
 $(EXEC) :$(OBJS)
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
 	
 MtmParkingLot.o: gcalc.cpp gcalc.h graph.h
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 graph.o: graph.cpp graph.h
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 	
 libgraph.a: $(OBJS)
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	ar -rs $@ $^
 
 clean:
