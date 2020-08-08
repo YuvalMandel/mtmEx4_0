@@ -530,7 +530,7 @@ void bash(const string& inputFileName, const string& outputFileName){
                     try {
                         exit = gcalc.handleCommand(output_file, command);
                     } catch(std::exception& e) {
-                        std::cout << "Error: " << e.what() << endl;
+                        output_file << "Error: " << e.what() << endl;
                     }
                 }
                 input_file.close();

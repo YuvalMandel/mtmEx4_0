@@ -29,9 +29,9 @@ private:
 
 public:
 
-    Graph() = default;
-    ~Graph() = default;
-    Graph& operator=(const Graph&) = default;
+//    Graph() = default;
+//    ~Graph() = default;
+//    Graph& operator=(const Graph&) = default;
 
     bool checkEdgePossible(const Edge& e);
     bool checkVertexPossible(const Vertex& e);
