@@ -1,9 +1,10 @@
  G1 = {v3, v1,   v2, v4,v5, v6 | < v1 , v2>,  <v5,  v6>,<v1, v3>} + {}
  print(G1)
   G2 = {v7, v9, v8, v5, v6 , v10| < v7 , v8>,  <v8,  v9>, <v5,  v6>, <v6,  v5>} + {|}  
- save(!G1 + ( G2  ) + ! {} + ( {|  }), (f1) )
+ save(!G1 + ( G2  ) + ! {} + ( {|  }), f1 )
   print (G2 + G1 +{} -   {|})   
 print({} + load(f1) - {v10|} - {v2} + ({v2, v6| <v2, v6>, <v6,v2>} ))
+print(load(f1) - {v10|}))
 print( (!G2) ^ ((G2)))
 print ( G1 * ! ( G2) )
 print( G1 ^ load(f1) + {|})
@@ -11,7 +12,7 @@ print(  ( {} ^ G1 ) )
 print(  ( {|} * load( (  f1 ) ) ) )
 print(load(f1) + {})
 G3 = {[v1;v2],[v2;v1]|<[v1;v2],[v2;v1]>}
-print( ( {[v3 ;  v4],[v2;v1]|<[v3;v4] ,[v2; v1]>}  ) )
+print( ( {[v3;v4],[v2;v1]|<[v3;v4] ,[v2; v1]>}  ) )
 save(!G2 + G1, f1)
 print(load(f1) + {|})
 BadG1 = {v3, v1,   v2, v4,v5, v6  < v1 , v2>,  <v5,  v6>,<v1, v3>} + {}
