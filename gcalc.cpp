@@ -11,9 +11,14 @@ using std::getline;
 
 void Gcalc::remove(const std::string& graphName){
 
-    std::map<std::string, Graph>::iterator it;
+    map<string, Graph>::iterator it;
     it = this -> graphs.find(graphName);
-    this -> graphs.erase(it);
+
+    if (it != this -> graphs.end()){
+        this -> graphs.erase(it);
+    }
+
+    throw noGraph();
 
 }
 
@@ -64,7 +69,7 @@ bool Gcalc::checkReservedWord(const std::string& word){
 
     if(shaved_word == "print" || shaved_word == "delete" ||
         shaved_word == "reset" || shaved_word == "who" ||
-        shaved_word == "quit" || shaved_word == "saved" ||
+        shaved_word == "quit" || shaved_word == "save" ||
         shaved_word == "load"){
         return true;
     }
@@ -226,38 +231,41 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
     string shaved_exp = this -> removeSpacesFromSides(exp);
 
-    if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
-        shaved_exp.erase(0,1);
-        shaved_exp.erase(shaved_exp.size() - 1, 1);;
-        g = this -> returnGraphFromExpression(shaved_exp);
-        return g;
-    }
-
     int i = int(shaved_exp.length()) - 1;
 
     int brackets_count = 0;
 
     while(i >= 0){
 
-        if(exp[i] == ')'){
+        char c = shaved_exp[i];
+
+        if(c == ')'){
             brackets_count--;
         }
-        if(exp[i] == '('){
+        if(c == '('){
             brackets_count++;
         }
 
         if((brackets_count == 0) &&
-        (exp[i] == '+' || exp[i] == '-' || exp[i] == '*' || exp[i] == '^')){
+        (c == '+' || c == '-' || c == '*' || c == '^')){
 
-            string leftSide = exp.substr(0, i);
-            string rightSide = exp.substr(i + 1, exp.length() - i - 1);
+            string leftSide = shaved_exp.substr(0, i);
+            string rightSide = shaved_exp.substr(i + 1, shaved_exp.length() - i - 1);
+            char op = c;
 
-            return this -> calcTwoExpressions(leftSide, rightSide, exp[i]);
+            return this -> calcTwoExpressions(leftSide, rightSide, op);
 
         }
 
         --i;
 
+    }
+
+    if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
+        shaved_exp.erase(0,1);
+        shaved_exp.erase(shaved_exp.size() - 1, 1);;
+        g = this -> returnGraphFromExpression(shaved_exp);
+        return g;
     }
 
     if(shaved_exp[0] == '!'){
@@ -373,9 +381,9 @@ void Gcalc::save(const std::string& command){
             shaved_command.substr(
                     location + 1, shaved_command.size() - location - 1));
 
-    std::map<std::string, Graph>::iterator it;
-    it = this -> graphs.find(graphName);
-    it -> second.saveGraphToFile(fileName);
+    Graph g = returnGraphFromExpression(graphName);
+
+    g.saveGraphToFile(fileName);
 
 }
 
@@ -437,7 +445,12 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
                 6, shaved_command.length() - 6);
         expression_to_calc = this ->returnGraphName(expression_to_calc);
 
-        this -> remove(expression_to_calc);
+        try {
+            this -> remove(expression_to_calc);
+        } catch(noGraph& e){
+            os << "Error: No Graph Exists with this name" << endl;
+            return 0;
+        }
 
         return 0;
 

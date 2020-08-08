@@ -1,0 +1,35 @@
+G1 = {v1, v2, v3 | <v1, v2>, <v1, v3>}
+print(G1)
+
+-G1 = {-v1,v2|<-v1,v2>}
+G2 = {v1,v3,v4|<v3,v4>}
+G3 = G1 + G2
+G4 = G3 - G2
+
+H = {[v1;v2],[v3;v4]|<[v1;v2],[v3;v4]>}
+
+save(G1, g1)
+
+# server commands
+rm gcalc graph.o graph.py _graph.so graph_wrap.cxx libgraph.a
+make
+make libgraph.a
+swig -c++ -Wall -python graph.i
+//usr/local/bin/g++ -DNDEBUG --pedantic-errors -Wall -Werror -I/usr/local/include/python3.6m -fPIC -shared graph_wrap.cxx libgraph.a -o _graph.so -std=c++11
+
+# python
+import graph as gw
+g1 = gw.create()
+gw.disp(g1)
+g1 = gw.addVertex(g1, 'a')
+g1 = gw.addVertex(g1, 'b')
+gw.disp(gw.addEdge(g1, 'a', 'b'))
+gw.addEdge(g1, 'a', 'c')
+g2 = gw.create()
+g2 = gw.addVertex(g2, 'c')
+gw.disp(gw.graphUnion(g1, g2, g1))
+gw.disp(g1)
+gw.destroy(g2)
+gw.destroy(g1)
+
+
