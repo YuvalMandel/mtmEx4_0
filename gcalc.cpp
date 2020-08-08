@@ -341,14 +341,14 @@ void Gcalc::addGraph(const std::string& graph_name,const Graph& graph){
 
 }
 
-string Gcalc::returnGraphName(const string& graphName){
+string Gcalc::removeSpacesAndBracketsFromSides(const string& graphName){
 
     string shaved_name = this -> removeSpacesFromSides(graphName);
 
     if(shaved_name[0] == '(' && shaved_name[shaved_name.size() - 1] == ')'){
         shaved_name.erase(0,1);
         shaved_name.erase(shaved_name.size() - 1, 1);;
-        return this -> returnGraphName(shaved_name);
+        return this->removeSpacesAndBracketsFromSides(shaved_name);
     }
 
     return shaved_name;
@@ -357,12 +357,12 @@ string Gcalc::returnGraphName(const string& graphName){
 
 void Gcalc::save(const std::string& command){
 
-    string shaved_command = this -> removeSpacesFromSides(command);
-    if(shaved_command[0] == '(' &&
-    shaved_command[shaved_command.length() - 1] == ')'){
-        shaved_command.erase(0,1);
-        shaved_command.erase(shaved_command.size() - 1, 1);;
-    }
+    string shaved_command = this -> removeSpacesAndBracketsFromSides(command);
+//    if(shaved_command[0] == '(' &&
+//    shaved_command[shaved_command.length() - 1] == ')'){
+//        shaved_command.erase(0,1);
+//        shaved_command.erase(shaved_command.size() - 1, 1);;
+//    }
 
     int location = shaved_command.find(',');
 
@@ -389,13 +389,7 @@ void Gcalc::save(const std::string& command){
 
 Graph Gcalc::load(const std::string& exp){
 
-    string shaved_exp = this -> removeSpacesFromSides(exp);
-    if(shaved_exp[0] == '(' && shaved_exp[shaved_exp.length() - 1] == ')'){
-        shaved_exp.erase(0,1);
-        shaved_exp.erase(shaved_exp.size() - 1, 1);;
-        shaved_exp = this -> removeSpacesFromSides(shaved_exp);
-    }
-
+    string shaved_exp = this->removeSpacesAndBracketsFromSides(exp);
     return loadGraphFromFile(shaved_exp);
 
 }
@@ -433,6 +427,12 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         }catch(noGraph& e){
             os << "Error: No Graph Exists with this name" << endl;
             return 0;
+        }catch(std::exception& e){
+            os << "Error: " << e.what() << endl;
+            return 0;
+        }catch(Graph::BadEdge& e){
+            os << "Error: Bad edge" << endl;
+            return 0;
         }
 
         os << g;
@@ -443,7 +443,8 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
 
         expression_to_calc = shaved_command.substr(
                 6, shaved_command.length() - 6);
-        expression_to_calc = this ->returnGraphName(expression_to_calc);
+        expression_to_calc = this->removeSpacesAndBracketsFromSides(
+                expression_to_calc);
 
         try {
             this -> remove(expression_to_calc);

@@ -28,7 +28,7 @@ public:
     Graph calcTwoExpressions(const std::string& leftSide,
                              const std::string& rightSide,
                              const char& symbol);
-    std::string returnGraphName(const std::string& graphName);
+    std::string removeSpacesAndBracketsFromSides(const std::string& graphName);
     bool checkReservedWord(const std::string& word);
     void save(const std::string& command);
     Graph load(const std::string& exp);
