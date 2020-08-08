@@ -9,16 +9,16 @@ using std::map;
 using std::exception;
 using std::getline;
 
-void Gcalc::remove(const std::string& graphName){
+void Gcalc::remove(const std::string& graphName) {
 
     map<string, Graph>::iterator it;
-    it = this -> graphs.find(graphName);
+    it = this->graphs.find(graphName);
 
-    if (it != this -> graphs.end()){
-        this -> graphs.erase(it);
+    if (it != this->graphs.end()) {
+        this->graphs.erase(it);
+    } else {
+        throw std::invalid_argument("Can't find graph name");
     }
-
-    throw std::invalid_argument("Can't find graph name");
 
 }
 
