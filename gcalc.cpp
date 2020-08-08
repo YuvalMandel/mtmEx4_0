@@ -460,7 +460,13 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         expression_to_calc = shaved_command.substr(
                 4, shaved_command.length() - 4);
 
-        this -> save(expression_to_calc);
+        try {
+            this -> save(expression_to_calc);
+        } catch(noGraph& e){
+            os << "Error: No Graph Exists with this name" << endl;
+            return 0;
+        }
+
         return 0;
 
     }
