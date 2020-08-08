@@ -49,16 +49,6 @@ public:
     friend Graph operator!(const Graph& g);
     friend std::ostream& operator<<(std::ostream &os, const Graph &g);
 
-//    class BadVertex: public std::exception{
-//    public:
-//        const char * what () const throw () {
-//            return "Vertex is Bad Unique";
-//        }
-//    };
-//
-//    class BadEdge: public std::exception{};
-//    class CantReadFile: public std::exception{};
-
 };
 
 Graph loadGraphFromFile(const std::string& fileName);

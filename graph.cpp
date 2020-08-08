@@ -1,6 +1,5 @@
 #include "graph.h"
 #include <algorithm>
-#include <set>
 using std::endl;
 
 using std::ostream;
@@ -399,60 +398,6 @@ Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
     graph_out = !graph_in1;
     return graph_out;
 }
-
-
-
-//string Graph::convertVertexesToString(){
-//
-//    string current;
-//
-//    for(const Vertex& v : this -> vertexes){
-//        current += std::to_string(v.size());
-//        current += v;
-//    }
-//
-//    return current;
-//
-//}
-//
-//string Graph::convertEdgesToString(){
-//
-//    string current;
-//
-//    for(const Edge& e : this -> edges){
-//        current += e.first + e.second;
-//    }
-//
-//    return current;
-//
-//}
-//
-//int Graph::graphVertexesNum(){
-//    return this -> vertexes.size();
-//}
-//
-//int Graph::graphEdgesNum(){
-//    return this -> edges.size();
-//}
-
-//    unsigned int mum_of_vertexes = this -> vertexes.size();
-//    unsigned int mum_of_edges = this -> edges.size();
-//
-//    unsigned int sum_size = 4+4; //for num of vertexes and num
-//
-//    for(const Vertex& v : this -> vertexes){
-//        vertex_size = v.size();
-//    }
-//
-//    os << "$" << endl;
-//
-//    for(const Edge& e : g.edges){
-//
-//        os << e << endl;
-//
-//    }
-//
-//    return os;
 
 //int main(){
 //

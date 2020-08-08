@@ -54,7 +54,6 @@ string Gcalc::removeSpacesFromSides(const std::string& command){
     int i = current_string.length() - 1;
 
     while(current_string[i] == ' ' || current_string[i] == '\r'){
-        //current_string.erase(i, 1);
         current_string = current_string.substr(0, current_string.size()-1);
         i--;
     }
@@ -358,11 +357,6 @@ string Gcalc::removeSpacesAndBracketsFromSides(const string& graphName){
 void Gcalc::save(const std::string& command){
 
     string shaved_command = this -> removeSpacesAndBracketsFromSides(command);
-//    if(shaved_command[0] == '(' &&
-//    shaved_command[shaved_command.length() - 1] == ')'){
-//        shaved_command.erase(0,1);
-//        shaved_command.erase(shaved_command.size() - 1, 1);;
-//    }
 
     int location = shaved_command.find(',');
 
@@ -427,13 +421,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         }catch(std::exception& e) {
             throw;
         }
-//        }catch(noGraph& e){
-//            os << "Error: No Graph Exists with this name" << endl;
-//            return 0;
-//        }catch(Graph::BadEdge& e){
-//            os << "Error: Bad edge" << endl;
-//            return 0;
-//        }
 
         os << g;
 
@@ -451,10 +438,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         }catch(std::exception& e) {
             throw;
         }
-//        } catch(noGraph& e){
-//            os << "Error: No Graph Exists with this name" << endl;
-//            return 0;
-//        }
 
         return 0;
 
@@ -469,10 +452,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         }catch(std::exception& e) {
             throw;
         }
-//        } catch(noGraph& e){
-//            os << "Error: No Graph Exists with this name" << endl;
-//            return 0;
-//        }
 
         return 0;
 
@@ -488,7 +467,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
                 shaved_command.substr(0, equalsSignLocation));
 
         if(!(this -> checkValidGraphName(graph_name))){
-//            os << "Error: Invalid Graph name" << endl; // TODO fix this!
             throw std::invalid_argument("Invalid Graph name");
             return 0;
         }
@@ -505,25 +483,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
         }catch(std::exception& e) {
             throw;
         }
-//        } catch(noGraph& e){
-//            os << "Error: No Graph Exists with this name" << endl;
-//            return 0;
-//        } catch(BadVertex& e){
-//            os << "Error: Invalid Vertex" << endl;
-//            return 0;
-//        }catch(Graph::BadVertex& e){
-//            os << "Error: Invalid Vertex" << endl;
-//            return 0;
-//        } catch(BadEdge& e){
-//            os << "Error: Invalid Edge" << endl;
-//            return 0;
-//        }catch(Graph::BadEdge& e){
-//            os << "Error: Invalid Edge" << endl;
-//            return 0;
-//        }catch(Graph::CantReadFile& e){
-//            os << "Error: Can't read the file" << endl;
-//            return 0;
-//        }
 
         this -> addGraph(graph_name, graph);
         return 0;
@@ -531,9 +490,7 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
     }
 
     // If all of them are false, this is an illegal command.
-//    os << "Error: Illegal command" << endl; // TODO fix this!
     throw std::invalid_argument("Invalid command");
-    return 0;
 
 }
 
