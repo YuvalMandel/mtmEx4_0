@@ -34,10 +34,10 @@ public:
     Graph load(const std::string& exp);
     friend std::ostream& operator<<(std::ostream &os, const Gcalc& gcalc);
 
-    class BadEdge: public std::exception{};
-    class BadVertex: public std::exception{};
-    class noGraph: public std::exception{};
-    class BadSave: public std::exception{};
+//    class BadEdge: public std::exception{};
+//    class BadVertex: public std::exception{};
+//    class noGraph: public std::exception{};
+//    class BadSave: public std::exception{};
 
 };
 

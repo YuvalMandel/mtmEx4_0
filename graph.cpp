@@ -47,7 +47,7 @@ void Graph::addVertexToGraph(const Vertex& v){
     if(this -> checkVertexPossible(v)){
         this -> vertexes.insert(v);
     }else{
-        throw BadVertex();
+        throw std::invalid_argument( "Bad vertex" );
     }
 
 }
@@ -82,7 +82,7 @@ void Graph::addEdgeToGraph(const Edge& e){
     if(this -> checkEdgePossible(e)){
         this -> edges.insert(e);
     }else{
-        throw BadEdge();
+        throw std::invalid_argument("Bad edge");
     }
 }
 
@@ -264,7 +264,7 @@ Graph loadGraphFromFile(const std::string& fileName){
     std::ifstream infile(fileName, std::ios_base::binary);
 
     if(!infile.is_open()){
-        throw Graph::CantReadFile();
+        throw std::invalid_argument("Can't open file");
     }
 
     Graph g;
@@ -349,8 +349,8 @@ void destroy(Graph& g){
 Graph addVertex(Graph& g, const Vertex& v){
     try {
         g.addVertexToGraph(v);
-    } catch(Graph::BadVertex&) {
-        std::cout << "Error: Invalid Vertex" << endl;
+    } catch(std::exception& e) {
+        std::cout << "Error: " << e.what() << endl;
     }
     return g;
 }
@@ -361,8 +361,8 @@ Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
     e.second = v2;
     try {
         g.addEdgeToGraph(e);
-    } catch(Graph::BadEdge&) {
-        std::cout << "Error: Invalid Edge" << endl;
+    } catch(std::exception& e) {
+        std::cout << "Error: " << e.what() << endl;
     }
     return g;
 }
