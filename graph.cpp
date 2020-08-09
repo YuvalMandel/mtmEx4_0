@@ -399,30 +399,30 @@ Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
     return graph_out;
 }
 
-//int main(){
-//
-//    Graph g1;
-//    Graph g2;
-//    Vertex v1 = "v1";
-//    Vertex v2 = "v2";
-//    Vertex v3 = "v3";
-//    Vertex v4 = "v4";
-//    Edge e12(v1,v2);
-//    Edge e34(v3,v4);
-//    g1.addVertexToGraph(v1);
-//    g1.addVertexToGraph(v2);
-//    g1.addVertexToGraph(v3);
-//    g2.addVertexToGraph(v3);
-//    g2.addVertexToGraph(v4);
-//    g1.addEdgeToGraph(e12);
-//    g2.addEdgeToGraph(e34);
-//    Graph g3 = g1 + g2;
-//    Graph g4 = !g1;
-//    std::cout << g1 << endl;
-////    std::cout << g2 << endl;
-////    std::cout << g3 << endl;
-//    std::cout << g4 << endl;
-//
-//    return 0;
-//
-//}
+int main(){
+
+    Graph g1;
+    Graph g2;
+    Vertex v1 = "v1";
+    Vertex v2 = "v2";
+    Vertex v3 = "v3";
+    Vertex v4 = "v4";
+    Edge e12(v1,v2);
+    Edge e34(v3,v4);
+    g1.addVertexToGraph(v1);
+    g1.addVertexToGraph(v2);
+    g1.addVertexToGraph(v3);
+    g2.addVertexToGraph(v3);
+    g2.addVertexToGraph(v4);
+    g1.addEdgeToGraph(e12);
+    g2.addEdgeToGraph(e34);
+    Graph g3 = g1 + g2; 
+    Graph g4 = !g1;
+    std::cout << g1 << endl;
+    std::cout << g2 << endl;
+    std::cout << g3 << endl;
+    std::cout << g4 << endl;
+
+    return 0;
+
+}
