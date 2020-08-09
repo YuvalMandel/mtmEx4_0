@@ -23,8 +23,8 @@
 class Graph {
 private:
 
-    std::set<Vertex> vertexes;
-    std::set<Edge> edges;
+//    std::set<Vertex> vertexes;
+//    std::set<Edge> edges;
 
 
 public:
