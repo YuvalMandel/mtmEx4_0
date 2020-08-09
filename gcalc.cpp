@@ -323,10 +323,12 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
         return -1;
     }
 
-    if (bad_location!=std::string::npos) {
+    if (bad_location != std::string::npos) {
         std::cout << "bad equel" << endl;
         return -1;
     }
+
+    std::cout << "std::string::npos " << std::string::npos << endl;
 
     int int_location  = int(location);
 
