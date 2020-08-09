@@ -362,16 +362,16 @@ void Gcalc::save(const std::string& command){
 
     string shaved_command = this -> removeSpacesAndBracketsFromSides(command);
 
-    int location = shaved_command.find(',');
+    int location = shaved_command.find_last_of(',');
 
     if (location==std::string::npos)
         throw std::invalid_argument("No ',' in save command");
 
-    int bad_location = shaved_command.substr(
-            location+1, shaved_command.size() - location - 1).find(',');
-
-    if (!(bad_location==std::string::npos))
-        throw std::invalid_argument("Too many ',' in save command");
+//    int bad_location = shaved_command.substr(
+//            location+1, shaved_command.size() - location - 1).find(',');
+//
+//    if (!(bad_location==std::string::npos))
+//        throw std::invalid_argument("Too many ',' in save command");
 
     string graphName = this -> removeSpacesFromSides(
             shaved_command.substr(0,location));
