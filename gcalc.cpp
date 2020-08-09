@@ -136,6 +136,8 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
     Graph g;
     int i = 1;
     string current;
+    int mum_of_empty_vertexes = 0;
+    int mum_of_vertexes = 0;
 
     while(exp[i] != '|' && exp[i] != '}'){
 
@@ -152,7 +154,11 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
             if(!current.empty()){
                 g.addVertexToGraph(current);
                 current = "";
+                mum_of_vertexes++;
+            }else{
+                mum_of_empty_vertexes++;
             }
+
         }
 
         ++i;
@@ -168,6 +174,18 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
     if(!current.empty()){
         g.addVertexToGraph(current);
         current = "";
+        mum_of_vertexes++;
+    }else{
+        mum_of_empty_vertexes++;
+    }
+
+    if(mum_of_vertexes > 0 && mum_of_empty_vertexes > 0){
+        throw std::invalid_argument("Empty vertex with regular vertex");
+    }
+
+    if(mum_of_empty_vertexes > 1){
+        throw std::invalid_argument("Empty graph can only hold one empty "
+                                    "vertex");
     }
 
     if(exp[i] == '|'){
