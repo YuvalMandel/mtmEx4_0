@@ -302,21 +302,21 @@ int Gcalc::returnEqualsSignLocation(const std::string& command){
 
     bool found = false;
 
-    int location = command.find('=');
+    unsigned int location = command.find("=");
 
     if (location!=std::string::npos)
         found = true;
 
-    int bad_location = command.substr(
-            location+1,command.length() - location).find('=');
+    unsigned int bad_location = command.substr(
+            location+1,command.length() - location).find("=");
 
     if (bad_location!=std::string::npos || !found) {
         return -1;
     }
 
-//    int int_location  = int(location);
+    int int_location  = int(location);
 
-    return location;
+    return int_location;
 
 }
 
