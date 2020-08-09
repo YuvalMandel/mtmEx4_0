@@ -14,15 +14,12 @@ gcalc.o: gcalc.cpp gcalc.h graph.h
 	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
-graph.o: graph.cpp graph.h
+graph.o: graph.cpp graph.h cpp_to_c_header.h
 	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 	
 libgraph.a: $(OBJS)
-	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	ar -rs $@ $^
-	swig -c++ -Wall -python graph.i
-	//usr/local/bin/g++ -DNDEBUG --pedantic-errors -Wall -Werror -I/usr/local/include/python3.6m -fPIC -shared graph_wrap.cxx libgraph.a -o _graph.so -std=c++11
 
 clean:
 	rm -f $(OBJS) $(EXEC)

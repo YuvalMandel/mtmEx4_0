@@ -350,69 +350,69 @@ Graph loadGraphFromFile(const std::string& fileName){
 
 }
 
-Graph create(){
-    Graph g;
-    return g;
-}
-
-void destroy(Graph& g){
-//    g.~Graph();
-    ;
-}
-
-Graph addVertex(Graph& g, const Vertex& v){
-    try {
-        g.addVertexToGraph(v);
-    } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
-    }
-    return g;
-}
-
-Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
-    Edge e;
-    e.first = v1;
-    e.second = v2;
-    try {
-        g.addEdgeToGraph(e);
-    } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
-    }
-    return g;
-}
-
-void disp(const Graph& g){
-    std::cout << g;
-}
-
-Graph graphUnion(const Graph& graph_in1, const Graph& graph_in2,
-                  Graph& graph_out){
-    graph_out = graph_in1 + graph_in2;
-    return graph_out;
-}
-
-Graph graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
-                         Graph& graph_out){
-    graph_out = graph_in1 ^ graph_in2;
-    return graph_out;
-}
-
-Graph graphDifference(const Graph& graph_in1, const Graph& graph_in2,
-                                Graph& graph_out){
-    graph_out = graph_in1 - graph_in2;
-    return graph_out;
-}
-
-Graph graphProduct(const Graph& graph_in1, const Graph& graph_in2,
-                              Graph& graph_out){
-    graph_out = graph_in1 * graph_in2;
-    return graph_out;
-}
-
-Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
-    graph_out = !graph_in1;
-    return graph_out;
-}
+//Graph create(){
+//    Graph g;
+//    return g;
+//}
+//
+//void destroy(Graph& g){
+////    g.~Graph();
+//    ;
+//}
+//
+//Graph addVertex(Graph& g, const Vertex& v){
+//    try {
+//        g.addVertexToGraph(v);
+//    } catch(std::exception& e) {
+//        std::cout << "Error: " << e.what() << endl;
+//    }
+//    return g;
+//}
+//
+//Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+//    Edge e;
+//    e.first = v1;
+//    e.second = v2;
+//    try {
+//        g.addEdgeToGraph(e);
+//    } catch(std::exception& e) {
+//        std::cout << "Error: " << e.what() << endl;
+//    }
+//    return g;
+//}
+//
+//void disp(const Graph& g){
+//    std::cout << g;
+//}
+//
+//Graph graphUnion(const Graph& graph_in1, const Graph& graph_in2,
+//                  Graph& graph_out){
+//    graph_out = graph_in1 + graph_in2;
+//    return graph_out;
+//}
+//
+//Graph graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
+//                         Graph& graph_out){
+//    graph_out = graph_in1 ^ graph_in2;
+//    return graph_out;
+//}
+//
+//Graph graphDifference(const Graph& graph_in1, const Graph& graph_in2,
+//                                Graph& graph_out){
+//    graph_out = graph_in1 - graph_in2;
+//    return graph_out;
+//}
+//
+//Graph graphProduct(const Graph& graph_in1, const Graph& graph_in2,
+//                              Graph& graph_out){
+//    graph_out = graph_in1 * graph_in2;
+//    return graph_out;
+//}
+//
+//Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
+//    graph_out = !graph_in1;
+//    return graph_out;
+//}
 
 //int main(){
 //
