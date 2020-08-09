@@ -107,27 +107,27 @@ Graph operator+(const Graph& g1, const Graph& g2){
 
 }
 
-Graph operator-(const Graph& g1, const Graph& g2){
-
-    Graph g = g1;
-
-    for(const Vertex& v : g2.vertexes){
-        g.vertexes.erase(v);
-    }
-
-    for(const Edge& e : g2.edges){
-        g.edges.erase(e);
-    }
-
-    for(const Edge& e : g.edges){
-        if(!g.checkEdgePossible(e)){
-            g.edges.erase(e);
-        }
-    }
-
-    return g;
-
-}
+//Graph operator-(const Graph& g1, const Graph& g2){
+//
+//    Graph g = g1;
+//
+//    for(const Vertex& v : g2.vertexes){
+//        g.vertexes.erase(v);
+//    }
+//
+//    for(const Edge& e : g2.edges){
+//        g.edges.erase(e);
+//    }
+//
+//    for(const Edge& e : g.edges){
+//        if(!g.checkEdgePossible(e)){
+//            g.edges.erase(e);
+//        }
+//    }
+//
+//    return g;
+//
+//}
 
 Graph operator^(const Graph& g1, const Graph& g2){
 
@@ -169,28 +169,28 @@ Graph operator*(const Graph& g1, const Graph& g2){
 
 }
 
-Graph operator!(const Graph& g){
-
-    Graph new_g;
-
-    new_g.vertexes = g.vertexes;
-
-    for(const Vertex& v1 : new_g.vertexes){
-        for(const Vertex& v2 : new_g.vertexes){
-            if(v1 != v2) {
-                Edge new_e(v1, v2);
-                new_g.edges.insert(new_e);
-            }
-        }
-    }
-
-    for(const Edge& e : g.edges){
-        new_g.edges.erase(e);
-    }
-
-    return new_g;
-
-}
+//Graph operator!(const Graph& g){
+//
+//    Graph new_g;
+//
+//    new_g.vertexes = g.vertexes;
+//
+//    for(const Vertex& v1 : new_g.vertexes){
+//        for(const Vertex& v2 : new_g.vertexes){
+//            if(v1 != v2) {
+//                Edge new_e(v1, v2);
+//                new_g.edges.insert(new_e);
+//            }
+//        }
+//    }
+//
+//    for(const Edge& e : g.edges){
+//        new_g.edges.erase(e);
+//    }
+//
+//    return new_g;
+//
+//}
 
 ostream& operator<<(ostream &os, const Graph &g){
 
@@ -336,36 +336,36 @@ Graph loadGraphFromFile(const std::string& fileName){
 
 }
 
-Graph create(){
-    Graph g;
-    return g;
-}
-
-void destroy(Graph& g){
-    g.~Graph();
-}
-
-Graph addVertex(Graph& g, const Vertex& v){
-    try {
-        g.addVertexToGraph(v);
-    } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
-    }
-    return g;
-}
-
-Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
-    Edge e;
-    e.first = v1;
-    e.second = v2;
-    try {
-        g.addEdgeToGraph(e);
-    } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
-    }
-    return g;
-}
-
+//Graph create(){
+//    Graph g;
+//    return g;
+//}
+//
+//void destroy(Graph& g){
+//    g.~Graph();
+//}
+//
+//Graph addVertex(Graph& g, const Vertex& v){
+//    try {
+//        g.addVertexToGraph(v);
+//    } catch(std::exception& e) {
+//        std::cout << "Error: " << e.what() << endl;
+//    }
+//    return g;
+//}
+//
+//Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+//    Edge e;
+//    e.first = v1;
+//    e.second = v2;
+//    try {
+//        g.addEdgeToGraph(e);
+//    } catch(std::exception& e) {
+//        std::cout << "Error: " << e.what() << endl;
+//    }
+//    return g;
+//}
+//
 //void disp(const Graph& g){
 //    std::cout << g;
 //}
