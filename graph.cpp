@@ -266,6 +266,8 @@ Graph loadGraphFromFile(const std::string& fileName){
         throw std::invalid_argument("Can't open file");
     }
 
+    // Might need to add try and catch // TODO
+
     Graph g;
 
     // Read number of vertexes.
@@ -331,6 +333,8 @@ Graph loadGraphFromFile(const std::string& fileName){
         g.addEdgeToGraph(e);
 
     }
+
+    infile.close();
 
     return g;
 
