@@ -103,13 +103,13 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
 
     unsigned int location = str.find(',');
 
-    if (location==std::string::npos)
+    if (!(location >= 0 && location < str.length()))
         throw std::invalid_argument("No ',' in edge");
 
     unsigned  bad_location = str.substr(
             location+1, str.size() - location - 1).find(',');
 
-    if (!(bad_location==std::string::npos))
+    if (bad_location >= 0 && bad_location < str.length())
         throw std::invalid_argument("Too many ',' in edge");
 
     if(str[0] == '<' && str[str.length() - 1] == '>'){
@@ -373,7 +373,7 @@ void Gcalc::save(const std::string& command){
 
     unsigned int location = shaved_command.find_last_of(',');
 
-    if (location==std::string::npos)
+    if (!(location >= 0 && location < command.length()))
         throw std::invalid_argument("No ',' in save command");
 
     string graphName = this -> removeSpacesFromSides(
