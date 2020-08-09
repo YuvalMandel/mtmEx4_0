@@ -298,15 +298,16 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
 
 }
 
-int Gcalc::returnEqualsSignLocation(const std::string& command){
+int Gcalc::returnEqualsSignLocation(const std::string& command) {
 
     bool found = false;
 
     unsigned int location = command.find('=');
 
-    if (location!=std::string::npos)
+    if (location != std::string::npos){
         std::cout << "found first equel" << endl;
         found = true;
+    }
 
     std::cout << "location is " << location << endl;
 
