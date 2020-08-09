@@ -22,7 +22,7 @@ public:
     static int returnEqualsSignLocation(const std::string& command);
     Graph returnGraphFromExpression(const std::string& exp);
     bool checkValidGraphName(const std::string& command);
-    Graph creatGraphFromString(const std::string& exp);
+    Graph createGraphFromString(const std::string& exp);
     void addGraph(const std::string& graph_name,const Graph& graph);
     Edge createEdgeFromString(const std::string& str);
     Graph calcTwoExpressions(const std::string& leftSide,

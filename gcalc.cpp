@@ -131,7 +131,7 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
 
 }
 
-Graph Gcalc::creatGraphFromString(const std::string& exp){
+Graph Gcalc::createGraphFromString(const std::string& exp){
 
     Graph g;
     int i = 1;
@@ -160,6 +160,10 @@ Graph Gcalc::creatGraphFromString(const std::string& exp){
     }
 
     current = this -> removeSpacesFromSides(current);
+
+    if(this -> checkReservedWord(current)){
+        throw std::invalid_argument("Vertex is reserved word");
+    }
 
     if(!current.empty()){
         g.addVertexToGraph(current);
@@ -273,7 +277,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
     }
 
     if(shaved_exp[0] == '{' && shaved_exp[shaved_exp.length() - 1] == '}'){
-        g = this -> creatGraphFromString(shaved_exp);
+        g = this->createGraphFromString(shaved_exp);
         return g;
     }
 
@@ -468,7 +472,6 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
 
         if(!(this -> checkValidGraphName(graph_name))){
             throw std::invalid_argument("Invalid Graph name");
-            return 0;
         }
 
         // On the right side, we will calc the expression to a graph.
@@ -482,6 +485,10 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
             graph = this -> returnGraphFromExpression(graph_expression);
         }catch(std::exception& e) {
             throw;
+        }
+
+        if(graph_name == "BadG"){
+            ;
         }
 
         this -> addGraph(graph_name, graph);
