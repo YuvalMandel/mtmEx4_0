@@ -302,21 +302,21 @@ int Gcalc::returnEqualsSignLocation(const std::string& command){
 
     bool found = false;
 
-    unsigned int location = command.find('=');
+    int location = command.find('=');
 
     if (location!=std::string::npos)
         found = true;
 
-    unsigned int bad_location = command.substr(
+    int bad_location = command.substr(
             location+1,command.length() - location).find('=');
 
     if (bad_location!=std::string::npos || !found) {
         return -1;
     }
 
-    int int_location  = signed(location);
+//    int int_location  = int(location);
 
-    return int_location;
+    return location;
 
 }
 
@@ -368,12 +368,6 @@ void Gcalc::save(const std::string& command){
 
     if (location==std::string::npos)
         throw std::invalid_argument("No ',' in save command");
-
-//    int bad_location = shaved_command.substr(
-//            location+1, shaved_command.size() - location - 1).find(',');
-//
-//    if (!(bad_location==std::string::npos))
-//        throw std::invalid_argument("Too many ',' in save command");
 
     string graphName = this -> removeSpacesFromSides(
             shaved_command.substr(0,location));
