@@ -7,105 +7,105 @@ using std::set;
 using std::string;
 using std::pair;
 
-bool Graph::checkVertexPossible(const Vertex& vertexName){
-
-    for (unsigned int i = 0; i < vertexName.length(); ++i) {
-        if(!(isalnum(vertexName[i]) || vertexName[i] == '[' ||
-           vertexName[i] == ']' || vertexName[i] == ';')){
-            return false;
-        }
-    }
-
-    int bracketsNum = 0;
-
-    for (unsigned int i = 0; i < vertexName.length(); ++i) {
-        if(vertexName[i] == '['){
-            bracketsNum++;
-        }else if(vertexName[i] == ']'){
-            bracketsNum--;
-            if(bracketsNum < 0){
-                return false;
-            }
-        }else if(vertexName[i] == ';'){
-            if(bracketsNum == 0){
-                return false;
-            }
-        }
-    }
-
-    if(bracketsNum != 0){
-        return false;
-    }
-
-    return true;
-
-}
-
-void Graph::addVertexToGraph(const Vertex& v){
-
-    if(this -> checkVertexPossible(v)){
-        this -> vertexes.insert(v);
-    }else{
-        throw std::invalid_argument( "Bad vertex" );
-    }
-
-}
-
-bool Graph::checkEdgePossible(const Edge& e){
-
-    if(e.first == e.second){
-        return false;
-    }
-
-    bool resultFirst = false;
-    bool resultSecond = false;
-
-    for(const Vertex& v : this -> vertexes){
-
-        if(v == e.first){
-            resultFirst = true;
-        }
-
-        if(v == e.second){
-            resultSecond = true;
-        }
-
-    }
-
-    return resultFirst && resultSecond;
-
-}
-
-void Graph::addEdgeToGraph(const Edge& e){
-
-    if(this -> checkEdgePossible(e)){
-        this -> edges.insert(e);
-    }else{
-        throw std::invalid_argument("Bad edge");
-    }
-}
-
-ostream& operator<<(ostream &os, const Edge &e){
-
-    return os << e.first << " " << e.second;
-
-}
-
-Graph operator+(const Graph& g1, const Graph& g2){
-
-    Graph g;
-
-    std::set_union(g1.vertexes.begin(), g1.vertexes.end(),
-                   g2.vertexes.begin(), g2.vertexes.end(),
-                   std::inserter(g.vertexes, g.vertexes.begin()));
-
-    std::set_union(g1.edges.begin(), g1.edges.end(),
-                   g2.edges.begin(), g2.edges.end(),
-                   std::inserter(g.edges, g.edges.begin()));
-
-    return g;
-
-}
+//bool Graph::checkVertexPossible(const Vertex& vertexName){
+//
+//    for (unsigned int i = 0; i < vertexName.length(); ++i) {
+//        if(!(isalnum(vertexName[i]) || vertexName[i] == '[' ||
+//           vertexName[i] == ']' || vertexName[i] == ';')){
+//            return false;
+//        }
+//    }
+//
+//    int bracketsNum = 0;
+//
+//    for (unsigned int i = 0; i < vertexName.length(); ++i) {
+//        if(vertexName[i] == '['){
+//            bracketsNum++;
+//        }else if(vertexName[i] == ']'){
+//            bracketsNum--;
+//            if(bracketsNum < 0){
+//                return false;
+//            }
+//        }else if(vertexName[i] == ';'){
+//            if(bracketsNum == 0){
+//                return false;
+//            }
+//        }
+//    }
+//
+//    if(bracketsNum != 0){
+//        return false;
+//    }
+//
+//    return true;
+//
+//}
+//
+//void Graph::addVertexToGraph(const Vertex& v){
+//
+//    if(this -> checkVertexPossible(v)){
+//        this -> vertexes.insert(v);
+//    }else{
+//        throw std::invalid_argument( "Bad vertex" );
+//    }
+//
+//}
+//
+//bool Graph::checkEdgePossible(const Edge& e){
+//
+//    if(e.first == e.second){
+//        return false;
+//    }
+//
+//    bool resultFirst = false;
+//    bool resultSecond = false;
+//
+//    for(const Vertex& v : this -> vertexes){
+//
+//        if(v == e.first){
+//            resultFirst = true;
+//        }
+//
+//        if(v == e.second){
+//            resultSecond = true;
+//        }
+//
+//    }
+//
+//    return resultFirst && resultSecond;
+//
+//}
+//
+//void Graph::addEdgeToGraph(const Edge& e){
+//
+//    if(this -> checkEdgePossible(e)){
+//        this -> edges.insert(e);
+//    }else{
+//        throw std::invalid_argument("Bad edge");
+//    }
+//}
+//
+//ostream& operator<<(ostream &os, const Edge &e){
+//
+//    return os << e.first << " " << e.second;
+//
+//}
+//
+//Graph operator+(const Graph& g1, const Graph& g2){
+//
+//    Graph g;
+//
+//    std::set_union(g1.vertexes.begin(), g1.vertexes.end(),
+//                   g2.vertexes.begin(), g2.vertexes.end(),
+//                   std::inserter(g.vertexes, g.vertexes.begin()));
+//
+//    std::set_union(g1.edges.begin(), g1.edges.end(),
+//                   g2.edges.begin(), g2.edges.end(),
+//                   std::inserter(g.edges, g.edges.begin()));
+//
+//    return g;
+//
+//}
 
 //Graph operator-(const Graph& g1, const Graph& g2){
 //
@@ -129,45 +129,45 @@ Graph operator+(const Graph& g1, const Graph& g2){
 //
 //}
 
-Graph operator^(const Graph& g1, const Graph& g2){
-
-    Graph g;
-
-    std::set_intersection(g1.vertexes.begin(), g1.vertexes.end(),
-                          g2.vertexes.begin(), g2.vertexes.end(),
-                          std::inserter(g.vertexes, g.vertexes.begin()));
-
-    std::set_intersection(g1.edges.begin(), g1.edges.end(),
-                          g2.edges.begin(), g2.edges.end(),
-                          std::inserter(g.edges, g.edges.begin()));
-
-    return g;
-
-}
-
-Graph operator*(const Graph& g1, const Graph& g2){
-
-    Graph g;
-
-    for(const Vertex& v1 : g1.vertexes){
-        for(const Vertex& v2 : g2.vertexes){
-            Vertex new_v = "[" + v1 + ";" + v2 + "]";
-            g.vertexes.insert(new_v);
-        }
-    }
-
-    for(const Edge& e1 : g1.edges){
-        for(const Edge& e2 : g2.edges){
-            Vertex v_first = "[" + e1.first + ";" + e2.first + "]";
-            Vertex v_left = "[" + e1.second + ";" + e2.second + "]";
-            Edge new_e(v_first,v_left);
-            g.edges.insert(new_e);
-        }
-    }
-
-    return g;
-
-}
+//Graph operator^(const Graph& g1, const Graph& g2){
+//
+//    Graph g;
+//
+//    std::set_intersection(g1.vertexes.begin(), g1.vertexes.end(),
+//                          g2.vertexes.begin(), g2.vertexes.end(),
+//                          std::inserter(g.vertexes, g.vertexes.begin()));
+//
+//    std::set_intersection(g1.edges.begin(), g1.edges.end(),
+//                          g2.edges.begin(), g2.edges.end(),
+//                          std::inserter(g.edges, g.edges.begin()));
+//
+//    return g;
+//
+//}
+//
+//Graph operator*(const Graph& g1, const Graph& g2){
+//
+//    Graph g;
+//
+//    for(const Vertex& v1 : g1.vertexes){
+//        for(const Vertex& v2 : g2.vertexes){
+//            Vertex new_v = "[" + v1 + ";" + v2 + "]";
+//            g.vertexes.insert(new_v);
+//        }
+//    }
+//
+//    for(const Edge& e1 : g1.edges){
+//        for(const Edge& e2 : g2.edges){
+//            Vertex v_first = "[" + e1.first + ";" + e2.first + "]";
+//            Vertex v_left = "[" + e1.second + ";" + e2.second + "]";
+//            Edge new_e(v_first,v_left);
+//            g.edges.insert(new_e);
+//        }
+//    }
+//
+//    return g;
+//
+//}
 
 //Graph operator!(const Graph& g){
 //
@@ -192,25 +192,25 @@ Graph operator*(const Graph& g1, const Graph& g2){
 //
 //}
 
-ostream& operator<<(ostream &os, const Graph &g){
-
-    for(const Vertex& v : g.vertexes){
-
-        os << v << endl;
-
-    }
-
-    os << "$" << endl;
-
-    for(const Edge& e : g.edges){
-
-        os << e << endl;
-
-    }
-
-    return os;
-
-}
+//ostream& operator<<(ostream &os, const Graph &g){
+//
+//    for(const Vertex& v : g.vertexes){
+//
+//        os << v << endl;
+//
+//    }
+//
+//    os << "$" << endl;
+//
+//    for(const Edge& e : g.edges){
+//
+//        os << e << endl;
+//
+//    }
+//
+//    return os;
+//
+//}
 
 //void Graph::saveGraphToFile(const std::string& fileName){
 //
