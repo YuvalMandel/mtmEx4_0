@@ -17,6 +17,10 @@ private:
 
 public:
 
+    Graph() = default;
+    ~Graph() = default;
+    Graph& operator=(const Graph&) = default;
+
     bool checkEdgePossible(const Edge& e);
     bool checkVertexPossible(const Vertex& e);
     void addVertexToGraph(const Vertex& v);
