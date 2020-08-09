@@ -304,7 +304,7 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
 
     unsigned int location = command.find('=');
 
-    if (location != std::string::npos){
+    if (location >= 0 && location < command.length()){
         std::cout << "found first equel" << endl;
         found = true;
     }
@@ -317,6 +317,7 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
     unsigned int bad_location = rest_of_command.find('=');
 
     std::cout << "bad_location " << bad_location << endl;
+    std::cout << "command.length() " << command.length() << endl;
 
     if(!found){
         std::cout << "equel not found" << endl;
@@ -325,7 +326,9 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
 
     std::cout << "std::string::npos " << std::string::npos << endl;
 
-    if (bad_location != std::string::npos) {
+    // bad_location != std::string::npos
+
+    if (bad_location < command.length() && bad_location >= 0) {
         std::cout << "bad equel" << endl;
         return -1;
     }
