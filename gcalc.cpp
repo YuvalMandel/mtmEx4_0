@@ -308,8 +308,10 @@ int Gcalc::returnEqualsSignLocation(const std::string& command){
         std::cout << "found first equel" << endl;
         found = true;
 
+    std::cout << "location is " << location << endl;
+
     unsigned int bad_location = command.substr(
-            location+1,command.length() - location).find('=');
+            location+1,command.length() - location - 1).find('=');
 
     if (bad_location!=std::string::npos || !found) {
         std::cout << "bad equel" << endl;
