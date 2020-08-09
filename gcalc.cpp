@@ -311,8 +311,12 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
 
     std::cout << "location is " << location << endl;
 
-    unsigned int bad_location = command.substr(
-            location+1,command.length() - location - 1).find('=');
+    string rest_of_command =
+            command.substr(location+1,command.length() - location - 1);
+
+    unsigned int bad_location = rest_of_command.find('=');
+
+    std::cout << "bad_location " << bad_location << endl;
 
     if(!found){
         std::cout << "equel not found" << endl;
