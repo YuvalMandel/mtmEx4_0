@@ -7,9 +7,10 @@ DEBUG_FLAG=
 COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG -fPIC
 
 $(EXEC) :$(OBJS)
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
 	
-MtmParkingLot.o: gcalc.cpp gcalc.h graph.h
+gcalc.o: gcalc.cpp gcalc.h graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 graph.o: graph.cpp graph.h
