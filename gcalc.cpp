@@ -101,13 +101,13 @@ Edge Gcalc::createEdgeFromString(const std::string& str){
 
     Edge e;
 
-    int location = str.find(',');
+    unsigned int location = str.find(',');
 
     if (location==std::string::npos)
         throw std::invalid_argument("No ',' in edge");
 
-    int bad_location = str.substr(location+1, str.size() - location - 1).find
-            (',');
+    unsigned  bad_location = str.substr(
+            location+1, str.size() - location - 1).find(',');
 
     if (!(bad_location==std::string::npos))
         throw std::invalid_argument("Too many ',' in edge");
@@ -302,12 +302,12 @@ int Gcalc::returnEqualsSignLocation(const std::string& command){
 
     bool found = false;
 
-    int location = command.find('=');
+    unsigned int location = command.find('=');
 
     if (location!=std::string::npos)
         found = true;
 
-    int bad_location = command.substr(
+    unsigned int bad_location = command.substr(
             location+1,command.length() - location).find('=');
 
     if (bad_location!=std::string::npos || !found) {
@@ -324,7 +324,7 @@ bool Gcalc::checkValidGraphName(const string& command){
         return false;
     }
 
-    for (int i = 0; i < command.length(); ++i) {
+    for (unsigned int i = 0; i < command.length(); ++i) {
         if(!isalnum(command[i])){
             return false;
         }
@@ -362,7 +362,7 @@ void Gcalc::save(const std::string& command){
 
     string shaved_command = this -> removeSpacesAndBracketsFromSides(command);
 
-    int location = shaved_command.find_last_of(',');
+    unsigned int location = shaved_command.find_last_of(',');
 
     if (location==std::string::npos)
         throw std::invalid_argument("No ',' in save command");
