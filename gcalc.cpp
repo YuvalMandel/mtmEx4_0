@@ -305,37 +305,23 @@ int Gcalc::returnEqualsSignLocation(const std::string& command) {
     unsigned int location = command.find('=');
 
     if (location >= 0 && location < command.length()){
-        std::cout << "found first equel" << endl;
         found = true;
     }
-
-    std::cout << "location is " << location << endl;
 
     string rest_of_command =
             command.substr(location+1,command.length() - location - 1);
 
     unsigned int bad_location = rest_of_command.find('=');
 
-    std::cout << "bad_location " << bad_location << endl;
-    std::cout << "command.length() " << command.length() << endl;
-
     if(!found){
-        std::cout << "equel not found" << endl;
         return -1;
     }
 
-    std::cout << "std::string::npos " << std::string::npos << endl;
-
-    // bad_location != std::string::npos
-
     if (bad_location < command.length() && bad_location >= 0) {
-        std::cout << "bad equel" << endl;
         return -1;
     }
 
     int int_location  = int(location);
-
-    std::cout << "int_location " << int_location << endl;
 
     return int_location;
 
@@ -481,11 +467,7 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
     // We will check if there is a single "="
     int equalsSignLocation = this -> returnEqualsSignLocation(shaved_command);
 
-    std::cout << "equalsSignLocation is " << equalsSignLocation << endl;
-
     if(equalsSignLocation != -1){
-
-        std::cout << "found equel" << endl;
 
         // On the left side, we will check if it's valid graph name.
         string graph_name = this -> removeSpacesFromSides(
