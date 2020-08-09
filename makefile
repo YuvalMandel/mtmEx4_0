@@ -1,10 +1,11 @@
+export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 CC=/usr/local/bin/gcc
 CXX=/usr/local/bin/g++
 OBJS= gcalc.o graph.o
 EXEC=gcalc
 SRVR_FLAGS =
 DEBUG_FLAG=
-COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG -fPIC
+COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG -fPIC -g
 
 $(EXEC) :$(OBJS)
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
