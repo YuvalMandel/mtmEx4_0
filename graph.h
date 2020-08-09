@@ -8,18 +8,6 @@
 #define Vertex std::string
 #define Edge std::pair<Vertex, Vertex>
 
-class Vertex: public std::string{
-
-    using std::string::string;
-
-};
-class Edge: public std::pair<Vertex, Vertex>{
-
-    using pair::pair;
-    friend std::ostream& operator<<(std::ostream &os, const Edge &e);
-
-};
-
 class Graph {
 private:
 
