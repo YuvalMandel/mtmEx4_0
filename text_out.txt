@@ -1,0 +1,361 @@
+Gcalc> Gcalc> v1
+v2
+v3
+v4
+v5
+v6
+$
+v1 v2
+v1 v3
+v5 v6
+Gcalc> Gcalc> Gcalc> v1
+v10
+v2
+v3
+v4
+v5
+v6
+v7
+v8
+v9
+$
+v1 v2
+v1 v3
+v5 v6
+v6 v5
+v7 v8
+v8 v9
+Gcalc> [x;y]
+v1
+v2
+v3
+v4
+v5
+v6
+v7
+v8
+v9
+$
+v1 v4
+v1 v5
+v1 v6
+v2 v6
+v3 v1
+v3 v4
+v3 v5
+v3 v6
+v4 v1
+v4 v3
+v4 v5
+v4 v6
+v5 v1
+v5 v3
+v5 v4
+v5 v6
+v6 v1
+v6 v2
+v6 v3
+v6 v4
+v6 v5
+v7 v8
+v8 v9
+Gcalc> v10
+v5
+v6
+v7
+v8
+v9
+$
+Gcalc> [v1;v10]
+[v1;v5]
+[v1;v6]
+[v1;v7]
+[v1;v8]
+[v1;v9]
+[v2;v10]
+[v2;v5]
+[v2;v6]
+[v2;v7]
+[v2;v8]
+[v2;v9]
+[v3;v10]
+[v3;v5]
+[v3;v6]
+[v3;v7]
+[v3;v8]
+[v3;v9]
+[v4;v10]
+[v4;v5]
+[v4;v6]
+[v4;v7]
+[v4;v8]
+[v4;v9]
+[v5;v10]
+[v5;v5]
+[v5;v6]
+[v5;v7]
+[v5;v8]
+[v5;v9]
+[v6;v10]
+[v6;v5]
+[v6;v6]
+[v6;v7]
+[v6;v8]
+[v6;v9]
+$
+[v1;v10] [v2;v5]
+[v1;v10] [v2;v6]
+[v1;v10] [v2;v7]
+[v1;v10] [v2;v8]
+[v1;v10] [v2;v9]
+[v1;v10] [v3;v5]
+[v1;v10] [v3;v6]
+[v1;v10] [v3;v7]
+[v1;v10] [v3;v8]
+[v1;v10] [v3;v9]
+[v1;v5] [v2;v10]
+[v1;v5] [v2;v7]
+[v1;v5] [v2;v8]
+[v1;v5] [v2;v9]
+[v1;v5] [v3;v10]
+[v1;v5] [v3;v7]
+[v1;v5] [v3;v8]
+[v1;v5] [v3;v9]
+[v1;v6] [v2;v10]
+[v1;v6] [v2;v7]
+[v1;v6] [v2;v8]
+[v1;v6] [v2;v9]
+[v1;v6] [v3;v10]
+[v1;v6] [v3;v7]
+[v1;v6] [v3;v8]
+[v1;v6] [v3;v9]
+[v1;v7] [v2;v10]
+[v1;v7] [v2;v5]
+[v1;v7] [v2;v6]
+[v1;v7] [v2;v9]
+[v1;v7] [v3;v10]
+[v1;v7] [v3;v5]
+[v1;v7] [v3;v6]
+[v1;v7] [v3;v9]
+[v1;v8] [v2;v10]
+[v1;v8] [v2;v5]
+[v1;v8] [v2;v6]
+[v1;v8] [v2;v7]
+[v1;v8] [v3;v10]
+[v1;v8] [v3;v5]
+[v1;v8] [v3;v6]
+[v1;v8] [v3;v7]
+[v1;v9] [v2;v10]
+[v1;v9] [v2;v5]
+[v1;v9] [v2;v6]
+[v1;v9] [v2;v7]
+[v1;v9] [v2;v8]
+[v1;v9] [v3;v10]
+[v1;v9] [v3;v5]
+[v1;v9] [v3;v6]
+[v1;v9] [v3;v7]
+[v1;v9] [v3;v8]
+[v5;v10] [v6;v5]
+[v5;v10] [v6;v6]
+[v5;v10] [v6;v7]
+[v5;v10] [v6;v8]
+[v5;v10] [v6;v9]
+[v5;v5] [v6;v10]
+[v5;v5] [v6;v7]
+[v5;v5] [v6;v8]
+[v5;v5] [v6;v9]
+[v5;v6] [v6;v10]
+[v5;v6] [v6;v7]
+[v5;v6] [v6;v8]
+[v5;v6] [v6;v9]
+[v5;v7] [v6;v10]
+[v5;v7] [v6;v5]
+[v5;v7] [v6;v6]
+[v5;v7] [v6;v9]
+[v5;v8] [v6;v10]
+[v5;v8] [v6;v5]
+[v5;v8] [v6;v6]
+[v5;v8] [v6;v7]
+[v5;v9] [v6;v10]
+[v5;v9] [v6;v5]
+[v5;v9] [v6;v6]
+[v5;v9] [v6;v7]
+[v5;v9] [v6;v8]
+Gcalc> v1
+v2
+v3
+v4
+v5
+v6
+$
+v5 v6
+Gcalc> $
+Gcalc> $
+Gcalc> v1
+v10
+v2
+v3
+v4
+v5
+v6
+v7
+v8
+v9
+$
+v1 v4
+v1 v5
+v1 v6
+v2 v1
+v2 v3
+v2 v4
+v2 v5
+v2 v6
+v3 v1
+v3 v2
+v3 v4
+v3 v5
+v3 v6
+v4 v1
+v4 v2
+v4 v3
+v4 v5
+v4 v6
+v5 v1
+v5 v2
+v5 v3
+v5 v4
+v5 v6
+v6 v1
+v6 v2
+v6 v3
+v6 v4
+v6 v5
+v7 v8
+v8 v9
+Gcalc> Gcalc> [v2;v1]
+[v3;v4]
+$
+[v3;v4] [v2;v1]
+Gcalc> Gcalc> v1
+v10
+v2
+v3
+v4
+v5
+v6
+v7
+v8
+v9
+$
+v1 v2
+v1 v3
+v10 v5
+v10 v6
+v10 v7
+v10 v8
+v10 v9
+v5 v10
+v5 v6
+v5 v7
+v5 v8
+v5 v9
+v6 v10
+v6 v7
+v6 v8
+v6 v9
+v7 v10
+v7 v5
+v7 v6
+v7 v9
+v8 v10
+v8 v5
+v8 v6
+v8 v7
+v9 v10
+v9 v5
+v9 v6
+v9 v7
+v9 v8
+Gcalc> Error: Invalid command
+Gcalc> Error: Invalid Graph name
+Gcalc> Error: Invalid Graph name
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Too many ',' in edge
+Gcalc> Error: No '<' and/or '>' in edge
+Gcalc> Error: Bad vertex
+Gcalc> Error: Bad edge
+Gcalc> Error: Bad edge
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Can't open file
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Too many ',' in edge
+Gcalc> Error: No '<' and/or '>' in edge
+Gcalc> Error: Bad vertex
+Gcalc> Error: Bad edge
+Gcalc> Error: Bad edge
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Can't open file
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Too many ',' in edge
+Gcalc> Error: No '<' and/or '>' in edge
+Gcalc> Error: Bad vertex
+Gcalc> Error: Bad edge
+Gcalc> Error: Bad edge
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Vertex is reserved word
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Bad vertex
+Gcalc> Error: Can't open file
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't determine graph
+Gcalc> Error: Can't open file
+Gcalc> 
