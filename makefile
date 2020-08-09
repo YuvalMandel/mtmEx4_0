@@ -9,8 +9,8 @@ COMP_FLAG= -std=c++11 -Wall -Werror -pedantic-errors -DNDEBUG -fPIC -g
 $(EXEC) :$(OBJS)
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
 	
-graph :$(OBJS)
-	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
+graph: graph.cpp graph.h
+	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 	
 MtmParkingLot.o: gcalc.cpp gcalc.h graph.h
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
