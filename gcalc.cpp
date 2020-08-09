@@ -520,15 +520,21 @@ void prompt(){
     string command;
     Gcalc gcalc;
 
-    while(!exit){
+    std::cout << "Gcalc> ";
 
-        std::cout << "Gcalc> ";
-        getline(std::cin,command);
+    while(!exit && getline(std::cin,command)){
+//        getline(std::cin,command);
+//        std::cout << "command: " << command << endl;
+
 
         try {
             exit = gcalc.handleCommand(std::cout, command);
         } catch(std::exception& e) {
             std::cout << "Error: " << e.what() << endl;
+        }
+
+        if(!exit){
+            std::cout << "Gcalc> ";
         }
 
     };
