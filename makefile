@@ -1,4 +1,3 @@
-export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 CC=/usr/local/bin/gcc
 CXX=/usr/local/bin/g++
 OBJS= gcalc.o graph.o
