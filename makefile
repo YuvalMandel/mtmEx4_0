@@ -22,4 +22,4 @@ clean:
 	rm -f $(OBJS) $(EXEC)
 	
 tar:
-	zip gcalc.cpp gcalc.h graph.cpp graph.h graph.i makefile
+	zip gcalc.zip gcalc.cpp gcalc.h graph.cpp graph.h graph.i makefile
