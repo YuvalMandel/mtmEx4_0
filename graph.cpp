@@ -350,67 +350,72 @@ Graph loadGraphFromFile(const std::string& fileName){
 
 }
 
-Graph create(){
-    Graph g;
+Graph* create(){
+    Graph* g = new Graph;
     return g;
 }
 
-void destroy(Graph& g){
-//    g.~Graph();
-    ;
+void destroy(Graph* g){
+    delete g;
 }
 
-Graph addVertex(Graph& g, const Vertex& v){
+Graph* addVertex(Graph* g, char* v){
     try {
-        g.addVertexToGraph(v);
+        std::string string_v(v);
+        g -> addVertexToGraph(string_v);
     } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
+        std::cout << "Error: " << e.what() << std::endl;
     }
     return g;
 }
 
-Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
+Graph* addEdge(Graph* g, char* v1, char* v2){
+
+    std::string string_v1(v1);
+    std::string string_v2(v2);
+
     Edge e;
-    e.first = v1;
-    e.second = v2;
+    e.first = string_v1;
+    e.second = string_v2;
+
     try {
-        g.addEdgeToGraph(e);
+        g->addEdgeToGraph(e);
     } catch(std::exception& e) {
-        std::cout << "Error: " << e.what() << endl;
+        std::cout << "Error: " << e.what() << std::endl;
     }
     return g;
 }
 
-void disp(const Graph& g){
-    std::cout << g;
+void disp(Graph* g){
+    std::cout << *g;
 }
 
-Graph graphUnion(const Graph& graph_in1, const Graph& graph_in2,
-                  Graph& graph_out){
-    graph_out = graph_in1 + graph_in2;
+Graph* graphUnion(Graph* graph_in1, Graph* graph_in2,
+                                Graph* graph_out){
+    *graph_out = *graph_in1 + *graph_in2;
     return graph_out;
 }
 
-Graph graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
-                         Graph& graph_out){
-    graph_out = graph_in1 ^ graph_in2;
+Graph* graphIntersection(Graph* graph_in1, Graph* graph_in2,
+                                       Graph* graph_out){
+    *graph_out = *graph_in1 ^ *graph_in2;
     return graph_out;
 }
 
-Graph graphDifference(const Graph& graph_in1, const Graph& graph_in2,
-                                Graph& graph_out){
-    graph_out = graph_in1 - graph_in2;
+Graph* graphDifference(Graph* graph_in1, Graph* graph_in2,
+                                     Graph* graph_out){
+    *graph_out = *graph_in1 - *graph_in2;
     return graph_out;
 }
 
-Graph graphProduct(const Graph& graph_in1, const Graph& graph_in2,
-                              Graph& graph_out){
-    graph_out = graph_in1 * graph_in2;
+Graph* graphProduct(Graph* graph_in1, Graph* graph_in2,
+                                  Graph* graph_out){
+    *graph_out = *graph_in1 * *graph_in2;
     return graph_out;
 }
 
-Graph graphComplement(const Graph& graph_in1, Graph& graph_out){
-    graph_out = !graph_in1;
+Graph* graphComplement(Graph* graph_in1, Graph* graph_out){
+    *graph_out = !(*graph_in1);
     return graph_out;
 }
 

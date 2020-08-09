@@ -41,20 +41,20 @@ public:
 
 Graph loadGraphFromFile(const std::string& fileName);
 
-Graph create();
-void destroy(Graph& g);
-Graph addVertex(Graph& g, const Vertex& v);
-Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2);
-void disp(const Graph& g);
+Graph* create();
+void destroy(Graph* g);
+Graph* addVertex(Graph* g, char* v);
+Graph* addEdge(Graph* g, char* v1, char* v2);
+void disp(Graph* g);
 
-Graph graphUnion(const Graph& graph_in1, const Graph& graph_in2,
-                  Graph& graph_out);
-Graph graphIntersection(const Graph& graph_in1, const Graph& graph_in2,
-                         Graph& graph_out);
-Graph graphDifference(const Graph& graph_in1, const Graph& graph_in2,
-                       Graph& graph_out);
-Graph graphProduct(const Graph& graph_in1, const Graph& graph_in2,
-                    Graph& graph_out);
-Graph graphComplement(const Graph& graph_in1, Graph& graph_out);
+Graph* graphUnion(Graph* graph_in1, Graph* graph_in2,
+                  Graph* graph_out);
+Graph* graphIntersection(Graph* graph_in1, Graph* graph_in2,
+                         Graph* graph_out);
+Graph* graphDifference(Graph* graph_in1, Graph* graph_in2,
+                       Graph* graph_out);
+Graph* graphProduct(Graph* graph_in1, Graph* graph_in2,
+                    Graph* graph_out);
+Graph* graphComplement(Graph* graph_in1, Graph* graph_out);
 
 #endif //MTMEX4_0_GRAPH_H
