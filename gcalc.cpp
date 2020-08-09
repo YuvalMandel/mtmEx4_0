@@ -314,7 +314,9 @@ int Gcalc::returnEqualsSignLocation(const std::string& command){
         return -1;
     }
 
-    return location;
+    int int_location  = signed(location);
+
+    return int_location;
 
 }
 
@@ -464,7 +466,11 @@ int Gcalc::handleCommand(std::ostream &os, const string& command){
     // We will check if there is a single "="
     int equalsSignLocation = this -> returnEqualsSignLocation(shaved_command);
 
+    std::cout << "equalsSignLocation is " << equalsSignLocation << endl;
+
     if(equalsSignLocation != -1){
+
+        std::cout << "found equel" << endl;
 
         // On the left side, we will check if it's valid graph name.
         string graph_name = this -> removeSpacesFromSides(
@@ -511,6 +517,7 @@ void prompt(){
 
         std::cout << "Gcalc> ";
         getline(std::cin,command);
+
         try {
             exit = gcalc.handleCommand(std::cout, command);
         } catch(std::exception& e) {
