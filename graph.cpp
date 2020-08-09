@@ -37,6 +37,11 @@ bool Graph::checkVertexPossible(const Vertex& vertexName){
         return false;
     }
 
+    std::set<Vertex>::const_iterator search = this -> vertexes.find(vertexName);
+    if (search != this -> vertexes.end()) {
+        return false;
+    }
+
     return true;
 
 }
@@ -70,6 +75,11 @@ bool Graph::checkEdgePossible(const Edge& e){
             resultSecond = true;
         }
 
+    }
+
+    std::set<Edge>::const_iterator search = this -> edges.find(e);
+    if (search != this -> edges.end()) {
+        return false;
     }
 
     return resultFirst && resultSecond;
@@ -346,7 +356,8 @@ Graph create(){
 }
 
 void destroy(Graph& g){
-    g.~Graph();
+//    g.~Graph();
+    ;
 }
 
 Graph addVertex(Graph& g, const Vertex& v){

@@ -147,10 +147,6 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
 
             current = this -> removeSpacesFromSides(current);
 
-            if(this -> checkReservedWord(current)){
-                throw std::invalid_argument("Vertex is reserved word");
-            }
-
             if(!current.empty()){
                 g.addVertexToGraph(current);
                 current = "";
@@ -166,10 +162,6 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
     }
 
     current = this -> removeSpacesFromSides(current);
-
-    if(this -> checkReservedWord(current)){
-        throw std::invalid_argument("Vertex is reserved word");
-    }
 
     if(!current.empty()){
         g.addVertexToGraph(current);
@@ -583,7 +575,7 @@ int main(int argc, char *argv[]){
 
     }else{
 
-        std::cout << "Error: Bad amount of args" << endl;
+        std::cerr << "Error: Bad amount of args" << endl;
 
     }
 
