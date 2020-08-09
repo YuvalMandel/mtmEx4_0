@@ -11,9 +11,11 @@ $(EXEC) :$(OBJS)
 	$(CXX) $(DEBUG_FLAG) $(OBJS) -o $@ $(SRVR_FLAGS)
 	
 gcalc.o: gcalc.cpp gcalc.h graph.h
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 
 graph.o: graph.cpp graph.h
+	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	$(CXX) -c $(DEBUG_FLAG) $(COMP_FLAG) $*.cpp
 	
 libgraph.a: $(OBJS)
