@@ -401,7 +401,7 @@ Graph addEdge(Graph& g, const Vertex& v1, const Vertex& v2){
 
 int main(){
 
-    Graph g1;
+//    Graph g1;
 //    Graph g2;
 //    Vertex v1 = "v1";
 //    Vertex v2 = "v2";
