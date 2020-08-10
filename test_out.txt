@@ -19,13 +19,7 @@ v7
 v8
 v9
 $
-v1 v2
-v1 v3
-v5 v6
-v6 v5
-v7 v8
-v8 v9
-[x;y]
+[x1;[;x;3];]
 v1
 v2
 v3
@@ -36,29 +30,8 @@ v7
 v8
 v9
 $
-v1 v4
-v1 v5
-v1 v6
 v2 v6
-v3 v1
-v3 v4
-v3 v5
-v3 v6
-v4 v1
-v4 v3
-v4 v5
-v4 v6
-v5 v1
-v5 v3
-v5 v4
-v5 v6
-v6 v1
 v6 v2
-v6 v3
-v6 v4
-v6 v5
-v7 v8
-v8 v9
 v10
 v5
 v6
@@ -202,36 +175,16 @@ v7
 v8
 v9
 $
-v1 v4
-v1 v5
-v1 v6
-v2 v1
-v2 v3
-v2 v4
-v2 v5
-v2 v6
-v3 v1
-v3 v2
-v3 v4
-v3 v5
-v3 v6
-v4 v1
-v4 v2
-v4 v3
-v4 v5
-v4 v6
-v5 v1
-v5 v2
-v5 v3
-v5 v4
+v1
+v2
+v4
+v5
+v6
+who
+$
+v1 v2
+v1 who
 v5 v6
-v6 v1
-v6 v2
-v6 v3
-v6 v4
-v6 v5
-v7 v8
-v8 v9
 [v2;v1]
 [v3;v4]
 $
@@ -280,6 +233,11 @@ Error: Invalid command
 Error: Invalid Graph name
 Error: Invalid Graph name
 Error: Can't determine graph
+Error: Empty graph can only hold one empty vertex
+Error: Bad vertex
+Error: Bad edge
+Error: Bad edge
+Error: Bad vertex
 Error: Bad vertex
 Error: Too many ',' in edge
 Error: No '<' and/or '>' in edge
@@ -288,18 +246,12 @@ Error: Bad edge
 Error: Bad edge
 Error: Can't determine graph
 Error: Can't determine graph
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
+Error: Bad vertex
 Error: Bad vertex
 Error: Can't open file
 Error: Can't determine graph
@@ -307,6 +259,10 @@ Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
+Error: Empty graph can only hold one empty vertex
+Error: Bad vertex
+Error: Bad edge
+Error: Bad edge
 Error: Bad vertex
 Error: Too many ',' in edge
 Error: No '<' and/or '>' in edge
@@ -315,24 +271,22 @@ Error: Bad edge
 Error: Bad edge
 Error: Can't determine graph
 Error: Can't determine graph
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
+Error: Bad vertex
 Error: Bad vertex
 Error: Can't open file
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
+Error: Empty graph can only hold one empty vertex
+Error: Bad vertex
+Error: Bad edge
+Error: Bad edge
 Error: Bad vertex
 Error: Too many ',' in edge
 Error: No '<' and/or '>' in edge
@@ -341,18 +295,12 @@ Error: Bad edge
 Error: Bad edge
 Error: Can't determine graph
 Error: Can't determine graph
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
-Error: Vertex is reserved word
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
 Error: Can't determine graph
+Error: Bad vertex
 Error: Bad vertex
 Error: Can't open file
 Error: Can't determine graph
