@@ -213,7 +213,8 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
                 }else if(exp[i] == ','){
                     expecting_comma = false;
                 }else{
-                    throw std::invalid_argument("Expected a comma in edge");
+                    throw std::invalid_argument("Expected a comma between "
+                                                "edges");
                 }
             }
             ++i;
