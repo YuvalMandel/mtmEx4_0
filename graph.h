@@ -11,6 +11,9 @@ private:
     std::set<std::string> vertexes;
     std::set<std::pair<std::string, std::string>> edges;
 
+    bool checkEdgePossible(const std::pair<std::string, std::string>& e);
+    bool checkVertexPossible(const std::string& e);
+
 
 public:
 
@@ -18,8 +21,6 @@ public:
     ~Graph() = default;
     Graph& operator=(const Graph&) = default;
 
-    bool checkEdgePossible(const std::pair<std::string, std::string>& e);
-    bool checkVertexPossible(const std::string& e);
     void addVertexToGraph(const std::string& v);
     void addEdgeToGraph(const std::pair<std::string, std::string>& e);
 

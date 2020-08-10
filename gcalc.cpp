@@ -265,7 +265,7 @@ Graph Gcalc::returnGraphFromExpression(const std::string& exp){
         (c == '+' || c == '-' || c == '*' || c == '^')){
 
             string leftSide = shaved_exp.substr(0, i);
-            string rightSide = shaved_exp.substr(i + 1, shaved_exp.length() - i - 1);
+            string rightSide = shaved_exp.substr(i+1, shaved_exp.length()-i-1);
             char op = c;
 
             return this -> calcTwoExpressions(leftSide, rightSide, op);
