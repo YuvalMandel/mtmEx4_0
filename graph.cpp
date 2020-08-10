@@ -7,7 +7,7 @@ using std::set;
 using std::string;
 using std::pair;
 
-bool Graph::checkVertexPossible(const Vertex& vertexName){
+bool Graph::checkVertexPossible(const string& vertexName){
 
     for (unsigned int i = 0; i < vertexName.length(); ++i) {
         if(!(isalnum(vertexName[i]) || vertexName[i] == '[' ||
@@ -37,7 +37,7 @@ bool Graph::checkVertexPossible(const Vertex& vertexName){
         return false;
     }
 
-    std::set<Vertex>::const_iterator search = this -> vertexes.find(vertexName);
+    std::set<string>::const_iterator search = this -> vertexes.find(vertexName);
     if (search != this -> vertexes.end()) {
         return false;
     }
@@ -46,7 +46,7 @@ bool Graph::checkVertexPossible(const Vertex& vertexName){
 
 }
 
-void Graph::addVertexToGraph(const Vertex& v){
+void Graph::addVertexToGraph(const string& v){
 
     if(this -> checkVertexPossible(v)){
         this -> vertexes.insert(v);
@@ -56,7 +56,7 @@ void Graph::addVertexToGraph(const Vertex& v){
 
 }
 
-bool Graph::checkEdgePossible(const Edge& e){
+bool Graph::checkEdgePossible(const pair<string, string>& e){
 
     if(e.first == e.second){
         return false;
@@ -65,7 +65,7 @@ bool Graph::checkEdgePossible(const Edge& e){
     bool resultFirst = false;
     bool resultSecond = false;
 
-    for(const Vertex& v : this -> vertexes){
+    for(const string& v : this -> vertexes){
 
         if(v == e.first){
             resultFirst = true;
@@ -77,7 +77,7 @@ bool Graph::checkEdgePossible(const Edge& e){
 
     }
 
-    std::set<Edge>::const_iterator search = this -> edges.find(e);
+    std::set<pair<string, string>>::const_iterator search = this -> edges.find(e);
     if (search != this -> edges.end()) {
         return false;
     }
@@ -86,7 +86,7 @@ bool Graph::checkEdgePossible(const Edge& e){
 
 }
 
-void Graph::addEdgeToGraph(const Edge& e){
+void Graph::addEdgeToGraph(const pair<string, string>& e){
 
     if(this -> checkEdgePossible(e)){
         this -> edges.insert(e);
@@ -95,7 +95,7 @@ void Graph::addEdgeToGraph(const Edge& e){
     }
 }
 
-ostream& operator<<(ostream &os, const Edge &e){
+ostream& operator<<(ostream &os, const pair<string, string> &e){
 
     return os << e.first << " " << e.second;
 
@@ -121,15 +121,15 @@ Graph operator-(const Graph& g1, const Graph& g2){
 
     Graph g = g1;
 
-    for(const Vertex& v : g2.vertexes){
+    for(const string& v : g2.vertexes){
         g.vertexes.erase(v);
     }
 
-    for(const Edge& e : g2.edges){
+    for(const pair<string, string>& e : g2.edges){
         g.edges.erase(e);
     }
 
-    for(const Edge& e : g.edges){
+    for(const pair<string, string>& e : g.edges){
         if(!g.checkEdgePossible(e)){
             g.edges.erase(e);
         }
@@ -159,18 +159,18 @@ Graph operator*(const Graph& g1, const Graph& g2){
 
     Graph g;
 
-    for(const Vertex& v1 : g1.vertexes){
-        for(const Vertex& v2 : g2.vertexes){
-            Vertex new_v = "[" + v1 + ";" + v2 + "]";
+    for(const string& v1 : g1.vertexes){
+        for(const string& v2 : g2.vertexes){
+            string new_v = "[" + v1 + ";" + v2 + "]";
             g.vertexes.insert(new_v);
         }
     }
 
-    for(const Edge& e1 : g1.edges){
-        for(const Edge& e2 : g2.edges){
-            Vertex v_first = "[" + e1.first + ";" + e2.first + "]";
-            Vertex v_left = "[" + e1.second + ";" + e2.second + "]";
-            Edge new_e(v_first,v_left);
+    for(const pair<string, string>& e1 : g1.edges){
+        for(const pair<string, string>& e2 : g2.edges){
+            string v_first = "[" + e1.first + ";" + e2.first + "]";
+            string v_left = "[" + e1.second + ";" + e2.second + "]";
+            pair<string, string> new_e(v_first,v_left);
             g.edges.insert(new_e);
         }
     }
@@ -185,16 +185,16 @@ Graph operator!(const Graph& g){
 
     new_g.vertexes = g.vertexes;
 
-    for(const Vertex& v1 : new_g.vertexes){
-        for(const Vertex& v2 : new_g.vertexes){
+    for(const string& v1 : new_g.vertexes){
+        for(const string& v2 : new_g.vertexes){
             if(v1 != v2) {
-                Edge new_e(v1, v2);
+                pair<string, string> new_e(v1, v2);
                 new_g.edges.insert(new_e);
             }
         }
     }
 
-    for(const Edge& e : g.edges){
+    for(const pair<string, string>& e : g.edges){
         new_g.edges.erase(e);
     }
 
@@ -204,7 +204,7 @@ Graph operator!(const Graph& g){
 
 ostream& operator<<(ostream &os, const Graph &g){
 
-    for(const Vertex& v : g.vertexes){
+    for(const string& v : g.vertexes){
 
         os << v << endl;
 
@@ -212,7 +212,7 @@ ostream& operator<<(ostream &os, const Graph &g){
 
     os << "$" << endl;
 
-    for(const Edge& e : g.edges){
+    for(const pair<string, string>& e : g.edges){
 
         os << e << endl;
 
@@ -235,7 +235,7 @@ void Graph::saveGraphToFile(const std::string& fileName){
     outfile.write((char*)&num_of_edges, sizeof(int));
 
     // Now each vertex.
-    for(const Vertex& v : this -> vertexes){
+    for(const string& v : this -> vertexes){
 
         int vertex_size = v.size();
         outfile.write((char*)&vertex_size, sizeof(int));
@@ -246,7 +246,7 @@ void Graph::saveGraphToFile(const std::string& fileName){
     }
 
     // And each Edge.
-    for(const Edge& e : this -> edges){
+    for(const pair<string, string>& e : this -> edges){
 
         int vertex_size = e.first.size();
         outfile.write((char*)&vertex_size, sizeof(int));
@@ -295,7 +295,7 @@ Graph loadGraphFromFile(const std::string& fileName){
         int vertex_size;
         infile.read((char*)&vertex_size, sizeof(int));
 
-        Vertex v;
+        string v;
         char c;
 
         for(int j = 0; j < vertex_size; ++j){
@@ -311,9 +311,9 @@ Graph loadGraphFromFile(const std::string& fileName){
     for(int i = 0; i < num_of_edges; ++i) {
 
         int vertex_size;
-        Vertex v;
+        string v;
         char c;
-        Edge e;
+        pair<string, string> e;
 
         // First Vertex
 
@@ -374,7 +374,7 @@ Graph* addEdge(Graph* g, char* v1, char* v2){
     std::string string_v1(v1);
     std::string string_v2(v2);
 
-    Edge e;
+    pair<string, string> e;
     e.first = string_v1;
     e.second = string_v2;
 

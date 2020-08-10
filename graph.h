@@ -5,14 +5,11 @@
 #include <set>
 #include <fstream>
 
-#define Vertex std::string
-#define Edge std::pair<Vertex, Vertex>
-
 class Graph {
 private:
 
-    std::set<Vertex> vertexes;
-    std::set<Edge> edges;
+    std::set<std::string> vertexes;
+    std::set<std::pair<std::string, std::string>> edges;
 
 
 public:
@@ -21,10 +18,10 @@ public:
     ~Graph() = default;
     Graph& operator=(const Graph&) = default;
 
-    bool checkEdgePossible(const Edge& e);
-    bool checkVertexPossible(const Vertex& e);
-    void addVertexToGraph(const Vertex& v);
-    void addEdgeToGraph(const Edge& e);
+    bool checkEdgePossible(const std::pair<std::string, std::string>& e);
+    bool checkVertexPossible(const std::string& e);
+    void addVertexToGraph(const std::string& v);
+    void addEdgeToGraph(const std::pair<std::string, std::string>& e);
 
     void saveGraphToFile(const std::string& fileName);
 

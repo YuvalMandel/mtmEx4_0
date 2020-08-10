@@ -24,7 +24,8 @@ public:
     bool checkValidGraphName(const std::string& command);
     Graph createGraphFromString(const std::string& exp);
     void addGraph(const std::string& graph_name,const Graph& graph);
-    Edge createEdgeFromString(const std::string& str);
+    std::pair<std::string, std::string> createEdgeFromString(const std::string&
+    str);
     Graph calcTwoExpressions(const std::string& leftSide,
                              const std::string& rightSide,
                              const char& symbol);

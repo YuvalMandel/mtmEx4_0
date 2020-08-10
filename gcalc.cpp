@@ -8,6 +8,7 @@ using std::string;
 using std::map;
 using std::exception;
 using std::getline;
+using std::pair;
 
 void Gcalc::remove(const std::string& graphName) {
 
@@ -97,9 +98,9 @@ token){
 
 }
 
-Edge Gcalc::createEdgeFromString(const std::string& str){
+pair<string, string> Gcalc::createEdgeFromString(const std::string& str){
 
-    Edge e;
+    pair<string, string> e;
 
     unsigned int location = str.find(',');
 
@@ -198,7 +199,8 @@ Graph Gcalc::createGraphFromString(const std::string& exp){
                     current = this->removeSpacesFromSides(current);
 
                     if (!current.empty()) {
-                        Edge e = this->createEdgeFromString(current);
+                        pair<string, string> e =
+                                this -> createEdgeFromString(current);
                         g.addEdgeToGraph(e);
                         current = "";
                     }
