@@ -21,8 +21,6 @@ graph.o: graph.cpp graph.h
 libgraph.a: $(OBJS)
 	export LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
 	ar -rs $@ $^
-	swig -c++ -Wall -python graph.i
-	//usr/local/bin/g++ -DNDEBUG --pedantic-errors -Wall -Werror -I/usr/local/include/python3.6m -fPIC -shared graph_wrap.cxx libgraph.a -o _graph.so -std=c++11
 
 clean:
 	rm -f $(OBJS) $(EXEC)
